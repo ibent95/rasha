@@ -1,0 +1,512 @@
+# ============================================
+# RASHA Super App — Docker Compose
+# Version: 1.0.0
+# ============================================
+#
+# Architecture:
+#   services/  → Backend microservices (PHP, Python, Node.js, Java, etc.)
+#   websites/  → Frontend applications (Angular, React, Vue, etc.)
+#
+# Usage:
+#   docker compose up -d --build   # Build & start everything
+#   docker compose logs -f         # Tail logs
+#   docker compose down            # Stop all services
+
+services:
+  # ============================================
+  # PostgreSQL Database — Platform Core (Local Development)
+  # ============================================
+  # NOTE: Production (ibent95.my.id) uses MySQL/MariaDB.
+  # See .env.example for production database settings.
+  rasha-database:
+    build:
+      context: .
+      dockerfile: dockerfiles/base/postgres.Dockerfile
+    image: rasha-database:latest
+    container_name: rasha-database
+    environment:
+      POSTGRES_DB: ${DB_DATABASE:-rasha_core_db}
+      POSTGRES_USER: ${DB_USERNAME:-rasha_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-rasha_secret_2024}
+      TZ: UTC
+    volumes:
+      - postgresql_data:/var/lib/postgresql/16/data
+      - ./configs/postgresql/postgresql.conf:/etc/postgresql/postgresql.conf:ro
+      - ./configs/postgresql/pg_hba.conf:/etc/postgresql/pg_hba.conf:ro
+      - ./configs/postgresql/init-databases.sql:/docker-entrypoint-initdb.d/init-databases.sql:ro
+    ports:
+      - "${DB_PORT_HOST:-5432}:5432"
+    restart: unless-stopped
+    networks:
+      - rasha-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-rasha_user} -d ${POSTGRES_DB:-rasha_core_db}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================
+  # Service: Core (Laravel) — Auth, Users, Roles
+  # Accessible by all apps/websites
+  # ============================================
+  rasha-svc-core-laravel:
+    build:
+      context: .
+      dockerfile: services/svc-core-laravel/Dockerfile
+    image: rasha-svc-core-laravel:latest
+    container_name: rasha-svc-core-laravel
+    environment:
+      - SANCTUM_STATEFUL_DOMAINS=localhost,rasha.local
+      - SESSION_DOMAIN=.rasha.local
+      - QUEUE_ENABLE=${QUEUE_ENABLE:-false}
+      - REDIS_ENABLE=${REDIS_ENABLE:-false}
+      - DB_HOST=rasha-database
+      - DB_PORT=5432
+      - DB_DATABASE=${DB_DATABASE:-rasha_core_db}
+      - DB_USERNAME=${DB_USERNAME:-rasha_user}
+      - DB_PASSWORD=${DB_PASSWORD:-rasha_secret_2024}
+    ports:
+      - "${SVC_CORE_PORT:-8400}:8400"
+    depends_on:
+      rasha-database:
+        condition: service_healthy
+    volumes:
+      - ./services/svc-core-laravel/storage:/var/www/html/storage
+      - ./services/svc-core-laravel/bootstrap/cache:/var/www/html/bootstrap/cache
+    restart: unless-stopped
+    networks:
+      - rasha-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8400/up"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================
+  # Service: Authorization (Laravel) — Users, Roles, Permissions & Auth
+  # ============================================
+  rasha-svc-authorization-laravel:
+    build:
+      context: .
+      dockerfile: services/svc-authorization-laravel/Dockerfile
+    image: rasha-svc-authorization-laravel:latest
+    container_name: rasha-svc-authorization-laravel
+    environment:
+      - DB_HOST=rasha-database
+      - DB_PORT=5432
+      - DB_DATABASE=${DB_DATABASE:-rasha_core_db}
+      - DB_USERNAME=${DB_USERNAME:-rasha_user}
+      - DB_PASSWORD=${DB_PASSWORD:-rasha_secret_2024}
+    ports:
+      - "${SVC_AUTHORIZATION_PORT:-8401}:8401"
+    depends_on:
+      rasha-database:
+        condition: service_healthy
+    volumes:
+      - ./services/svc-authorization-laravel/storage:/var/www/html/storage
+      - ./services/svc-authorization-laravel/bootstrap/cache:/var/www/html/bootstrap/cache
+    restart: unless-stopped
+    networks:
+      - rasha-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8401/up"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================
+  # Service: CRM (Laravel) — Customer Relationship
+  # ============================================
+  rasha-svc-crm-laravel:
+    build:
+      context: .
+      dockerfile: services/svc-crm-laravel/Dockerfile
+    image: rasha-svc-crm-laravel:latest
+    container_name: rasha-svc-crm-laravel
+    environment:
+      - DB_HOST=rasha-database
+      - DB_PORT=5432
+      - DB_DATABASE=${CRM_DB_DATABASE:-rasha_crm_db}
+      - DB_USERNAME=${CRM_DB_USERNAME:-rasha_crm_user}
+      - DB_PASSWORD=${CRM_DB_PASSWORD:-rasha_crm_secret_2024}
+    ports:
+      - "${SVC_CRM_PORT:-8402}:8402"
+    depends_on:
+      rasha-database:
+        condition: service_healthy
+    volumes:
+      - ./services/svc-crm-laravel/storage:/var/www/html/storage
+      - ./services/svc-crm-laravel/bootstrap/cache:/var/www/html/bootstrap/cache
+    restart: unless-stopped
+    networks:
+      - rasha-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8402/up"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================
+  # Service: Dynamic Form (Laravel)
+  # ============================================
+  rasha-svc-dynamic-form-laravel:
+    build:
+      context: .
+      dockerfile: services/svc-dynamic-form-laravel/Dockerfile
+    image: rasha-svc-dynamic-form-laravel:latest
+    container_name: rasha-svc-dynamic-form-laravel
+    environment:
+      - DB_HOST=rasha-database
+      - DB_PORT=5432
+      - DB_DATABASE=${DYNAMIC_FORM_DB_DATABASE:-rasha_dynamic_form_db}
+      - DB_USERNAME=${DYNAMIC_FORM_DB_USERNAME:-rasha_dynamic_form_user}
+      - DB_PASSWORD=${DYNAMIC_FORM_DB_PASSWORD:-rasha_dynamic_form_secret_2024}
+    ports:
+      - "${SVC_DYNAMIC_FORM_PORT:-8403}:8403"
+    depends_on:
+      rasha-database:
+        condition: service_healthy
+    volumes:
+      - ./services/svc-dynamic-form-laravel/storage:/var/www/html/storage
+      - ./services/svc-dynamic-form-laravel/bootstrap/cache:/var/www/html/bootstrap/cache
+    restart: unless-stopped
+    networks:
+      - rasha-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8403/up"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================
+  # Service: ERP (Laravel)
+  # ============================================
+  rasha-svc-erp-laravel:
+    build:
+      context: .
+      dockerfile: services/svc-erp-laravel/Dockerfile
+    image: rasha-svc-erp-laravel:latest
+    container_name: rasha-svc-erp-laravel
+    environment:
+      - DB_HOST=rasha-database
+      - DB_PORT=5432
+      - DB_DATABASE=${ERP_DB_DATABASE:-rasha_erp_db}
+      - DB_USERNAME=${ERP_DB_USERNAME:-rasha_erp_user}
+      - DB_PASSWORD=${ERP_DB_PASSWORD:-rasha_erp_secret_2024}
+    ports:
+      - "${SVC_ERP_PORT:-8404}:8404"
+    depends_on:
+      rasha-database:
+        condition: service_healthy
+    volumes:
+      - ./services/svc-erp-laravel/storage:/var/www/html/storage
+      - ./services/svc-erp-laravel/bootstrap/cache:/var/www/html/bootstrap/cache
+    restart: unless-stopped
+    networks:
+      - rasha-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8404/up"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================
+  # Website: Portal (Angular) — Main Page
+  # ============================================
+  rasha-web-portal-angular:
+    build:
+      context: .
+      dockerfile: websites/web-portal-angular/Dockerfile
+    image: rasha-web-portal-angular:latest
+    container_name: rasha-web-portal-angular
+    ports:
+      - "${WEB_PORTAL_PORT:-4400}:80"
+    depends_on:
+      rasha-svc-core-laravel:
+        condition: service_started
+    restart: unless-stopped
+    networks:
+      - rasha-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================
+  # Website: CRM (Angular)
+  # ============================================
+  rasha-web-crm-angular:
+    build:
+      context: .
+      dockerfile: websites/web-crm-angular/Dockerfile
+    image: rasha-web-crm-angular:latest
+    container_name: rasha-web-crm-angular
+    ports:
+      - "${WEB_CRM_PORT:-4401}:80"
+    depends_on:
+      rasha-svc-crm-laravel:
+        condition: service_started
+    restart: unless-stopped
+    networks:
+      - rasha-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================
+  # Website: Dynamic Form (Angular)
+  # ============================================
+  rasha-web-dynamic-form-angular:
+    build:
+      context: .
+      dockerfile: websites/web-dynamic-form-angular/Dockerfile
+    image: rasha-web-dynamic-form-angular:latest
+    container_name: rasha-web-dynamic-form-angular
+    ports:
+      - "${WEB_DYNAMIC_FORM_PORT:-4402}:80"
+    depends_on:
+      rasha-svc-dynamic-form-laravel:
+        condition: service_started
+    restart: unless-stopped
+    networks:
+      - rasha-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================
+  # Website: ERP (Angular)
+  # ============================================
+  rasha-web-erp-angular:
+    build:
+      context: .
+      dockerfile: websites/web-erp-angular/Dockerfile
+    image: rasha-web-erp-angular:latest
+    container_name: rasha-web-erp-angular
+    ports:
+      - "${WEB_ERP_PORT:-4403}:80"
+    depends_on:
+      rasha-svc-erp-laravel:
+        condition: service_started
+    restart: unless-stopped
+    networks:
+      - rasha-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================
+  # Reverse Proxy — Nginx (Subdomain Routing)
+  # ============================================
+  # Routes:
+  #   rasha.local         → rasha-web-portal-angular
+  #   crm.rasha.local     → rasha-web-crm-angular
+  #   dynamic-form.rasha.local → rasha-web-dynamic-form-angular
+  #   erp.rasha.local     → rasha-web-erp-angular
+  rasha-proxy:
+    build:
+      context: .
+      dockerfile: dockerfiles/proxy/nginx.Dockerfile
+    image: rasha-proxy:latest
+    container_name: rasha-proxy
+    ports:
+      - "${PROXY_PORT:-80}:80"
+      - "${PROXY_SSL_PORT:-443}:443"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./certs:/etc/nginx/ssl:ro
+    depends_on:
+      rasha-web-portal-angular:
+        condition: service_started
+      rasha-web-crm-angular:
+        condition: service_started
+      rasha-web-dynamic-form-angular:
+        condition: service_started
+      rasha-web-erp-angular:
+        condition: service_started
+    restart: unless-stopped
+    networks:
+      - rasha-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================
+  # Redis Cache
+  # ============================================
+  rasha-redis:
+    image: dhi.io/redis:8
+    container_name: rasha-redis
+    command: ["redis-server", "--appendonly", "yes", "--requirepass", "${REDIS_PASSWORD:-rasha_redis_2024}"]
+    environment:
+      TZ: UTC
+    volumes:
+      - redis_data:/data
+      - ./configs/redis/redis.conf:/usr/local/etc/redis/redis.conf:ro
+    ports:
+      - "${REDIS_PORT_HOST:-6379}:6379"
+    restart: unless-stopped
+    networks:
+      - rasha-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD:-rasha_redis_2024}", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================
+  # Memcached Cache
+  # ============================================
+  rasha-memcached:
+    image: dhi.io/memcached:1
+    container_name: rasha-memcached
+    environment:
+      TZ: UTC
+    command: ["-m", "${MEMCACHED_MEMORY_LIMIT:-64}", "-p", "11211", "-I", "16m"]
+    ports:
+      - "${MEMCACHED_PORT_HOST:-11211}:11211"
+    restart: unless-stopped
+    networks:
+      - rasha-network
+    healthcheck:
+      disable: true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================
+  # MySQL/MariaDB — Production Database
+  # ============================================
+  # Uncomment this service and comment out rasha-database (PostgreSQL)
+  # when running with MySQL/MariaDB configuration.
+  #
+  # rasha-mysql:
+  #   image: mariadb:11
+  #   container_name: rasha-mysql
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rasha_root_2024}
+  #     MYSQL_DATABASE: ${DB_DATABASE:-ibentmyi_app_core}
+  #     MYSQL_USER: ${DB_USERNAME:-app_core}
+  #     MYSQL_PASSWORD: ${DB_PASSWORD:-CHANGE_ME}
+  #     TZ: UTC
+  #   volumes:
+  #     - mysql_data:/var/lib/mysql
+  #     - ./configs/mysql/init-databases.sql:/docker-entrypoint-initdb.d/init-databases.sql:ro
+  #   ports:
+  #     - "${DB_PORT_HOST:-3306}:3306"
+  #   restart: unless-stopped
+  #   networks:
+  #     - rasha-network
+  #   healthcheck:
+  #     test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #     start_period: 30s
+  #   logging:
+  #     driver: "json-file"
+  #     options:
+  #       max-size: "10m"
+  #       max-file: "3"
+
+# ============================================
+# Networks
+# ============================================
+networks:
+  rasha-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${DOCKER_NETWORK_SUBNET:-172.21.0.0/16}
+
+# ============================================
+# Volumes
+# ============================================
+volumes:
+  postgresql_data:
+  redis_data:

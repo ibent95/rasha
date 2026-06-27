@@ -1,0 +1,149 @@
+/* ============================================
+   RASHA Super App - Design Tokens & CSS Variables
+   Brand: Crimson Red, Blaze Orange, Vivid Yellow, Eco Green
+   ============================================ */
+
+:root {
+  /* ============================================
+     Brand Colors
+     ============================================ */
+  --rasha-primary: #E53935;          /* Crimson Red - Hasrat, energi, keberanian */
+  --rasha-primary-light: #EF5350;
+  --rasha-primary-dark: #C62828;
+  --rasha-primary-rgb: 229, 57, 53;
+
+  --rasha-secondary: #FB8C00;        /* Blaze Orange - Kreativitas, kehangatan */
+  --rasha-secondary-light: #FFA726;
+  --rasha-secondary-dark: #EF6C00;
+  --rasha-secondary-rgb: 251, 140, 0;
+
+  --rasha-accent-yellow: #FDD835;    /* Vivid Yellow - Kejayaan, masa depan cerah */
+  --rasha-accent-yellow-light: #FFEE58;
+  --rasha-accent-yellow-dark: #F9A825;
+  --rasha-accent-yellow-rgb: 253, 216, 53;
+
+  --rasha-accent-green: #4CAF50;     /* Eco Green - Pertumbuhan, keberlanjutan */
+  --rasha-accent-green-light: #66BB6A;
+  --rasha-accent-green-dark: #388E3C;
+  --rasha-accent-green-rgb: 76, 175, 80;
+
+  /* ============================================
+     Neutral Colors
+     ============================================ */
+  --rasha-white: #FFFFFF;
+  --rasha-bg-dark: #121214;          /* Dark Obsidian - Latar premium */
+  --rasha-bg-dark-rgb: 18, 18, 20;
+  --rasha-bg-card: #1E1E22;
+  --rasha-bg-card-hover: #2A2A2F;
+  --rasha-bg-surface: #252529;
+  --rasha-bg-input: #1A1A1E;
+
+  --rasha-text-primary: #FFFFFF;
+  --rasha-text-secondary: #A0A0A6;
+  --rasha-text-tertiary: #6E6E73;
+  --rasha-text-muted: #48484A;
+
+  --rasha-border: #38383A;
+  --rasha-border-light: #2C2C2E;
+  --rasha-divider: rgba(255, 255, 255, 0.06);
+
+  /* ============================================
+     Status Colors
+     ============================================ */
+  --rasha-success: #4CAF50;
+  --rasha-warning: #FB8C00;
+  --rasha-danger: #E53935;
+  --rasha-info: #2196F3;
+
+  /* ============================================
+     Gradients
+     ============================================ */
+  --rasha-gradient-brand: linear-gradient(135deg, var(--rasha-primary) 0%, var(--rasha-secondary) 50%, var(--rasha-accent-yellow) 100%);
+  --rasha-gradient-brand-v: linear-gradient(180deg, var(--rasha-primary) 0%, var(--rasha-secondary) 50%, var(--rasha-accent-yellow) 100%);
+  --rasha-gradient-green: linear-gradient(135deg, var(--rasha-accent-green) 0%, #2E7D32 100%);
+  --rasha-gradient-dark: linear-gradient(180deg, #1E1E22 0%, #121214 100%);
+  --rasha-gradient-glow: linear-gradient(135deg, rgba(229, 57, 53, 0.15) 0%, rgba(251, 140, 0, 0.15) 50%, rgba(253, 216, 53, 0.15) 100%);
+
+  /* ============================================
+     Typography
+     ============================================ */
+  --rasha-font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --rasha-font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --rasha-text-xs: 0.75rem;    /* 12px */
+  --rasha-text-sm: 0.875rem;   /* 14px */
+  --rasha-text-base: 1rem;     /* 16px */
+  --rasha-text-lg: 1.125rem;   /* 18px */
+  --rasha-text-xl: 1.25rem;    /* 20px */
+  --rasha-text-2xl: 1.5rem;    /* 24px */
+  --rasha-text-3xl: 1.875rem;  /* 30px */
+  --rasha-text-4xl: 2.25rem;   /* 36px */
+
+  --rasha-font-weight-normal: 400;
+  --rasha-font-weight-medium: 500;
+  --rasha-font-weight-semibold: 600;
+  --rasha-font-weight-bold: 700;
+  --rasha-font-weight-extrabold: 800;
+
+  /* ============================================
+     Spacing
+     ============================================ */
+  --rasha-space-1: 0.25rem;   /* 4px */
+  --rasha-space-2: 0.5rem;    /* 8px */
+  --rasha-space-3: 0.75rem;   /* 12px */
+  --rasha-space-4: 1rem;      /* 16px */
+  --rasha-space-5: 1.25rem;   /* 20px */
+  --rasha-space-6: 1.5rem;    /* 24px */
+  --rasha-space-8: 2rem;      /* 32px */
+  --rasha-space-10: 2.5rem;   /* 40px */
+  --rasha-space-12: 3rem;     /* 48px */
+  --rasha-space-16: 4rem;     /* 64px */
+
+  /* ============================================
+     Border Radius
+     ============================================ */
+  --rasha-radius-sm: 4px;
+  --rasha-radius-md: 8px;
+  --rasha-radius-lg: 12px;
+  --rasha-radius-xl: 16px;
+  --rasha-radius-2xl: 24px;
+  --rasha-radius-full: 9999px;
+
+  /* ============================================
+     Shadows
+     ============================================ */
+  --rasha-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --rasha-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --rasha-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+  --rasha-shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.6);
+  --rasha-shadow-glow-primary: 0 0 20px rgba(229, 57, 53, 0.3);
+  --rasha-shadow-glow-secondary: 0 0 20px rgba(251, 140, 0, 0.3);
+  --rasha-shadow-glow-green: 0 0 20px rgba(76, 175, 80, 0.3);
+
+  /* ============================================
+     Transitions
+     ============================================ */
+  --rasha-transition-fast: 150ms ease;
+  --rasha-transition-base: 250ms ease;
+  --rasha-transition-slow: 350ms ease;
+  --rasha-transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ============================================
+     Z-Index Scale
+     ============================================ */
+  --rasha-z-dropdown: 1000;
+  --rasha-z-sticky: 1020;
+  --rasha-z-fixed: 1030;
+  --rasha-z-modal-backdrop: 1040;
+  --rasha-z-modal: 1050;
+  --rasha-z-popover: 1060;
+  --rasha-z-tooltip: 1070;
+  --rasha-z-toast: 1080;
+
+  /* ============================================
+     Sidebar
+     ============================================ */
+  --rasha-sidebar-width: 260px;
+  --rasha-sidebar-collapsed-width: 72px;
+  --rasha-header-height: 64px;
+}

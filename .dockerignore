@@ -1,0 +1,66 @@
+# ============================================
+# RASHA Super App — .dockerignore
+# ============================================
+# Every service uses `context: .` (project root),
+# so this file controls what Docker sends as build context.
+# Excluding large dirs = faster context transfer = faster builds.
+
+# ── Dependencies (biggest win — GBs excluded) ──
+**/node_modules/
+**/vendor/
+
+# ── Build artifacts ──
+**/dist/
+**/build/
+**/*.map
+
+# ── Version control ──
+.git/
+.gitignore
+
+# ── SSL Certs (not needed in build context) ──
+certs/
+
+# ── Runtime data ──
+data/
+
+# ── Environment files ──
+.env
+.env.*
+!.env.example
+
+# ── IDE / Editor ──
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ── OS files ──
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ── Logs ──
+*.log
+logs/
+
+# ── Documentation (not needed in builds) ──
+*.md
+
+# ── Docker files (not needed inside context) ──
+docker-compose.yml
+docker-bake.hcl
+docker-compose.*.yml
+Dockerfile*
+
+# ── Scripts (not needed in builds) ──
+scripts/
+developments/
+deploy/
+startup.*
+
+# ── Cache ──
+.cache/
+coverage/
+.nyc_output/
