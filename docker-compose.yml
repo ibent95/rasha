@@ -40,7 +40,11 @@ services:
     networks:
       - rasha-network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-rasha_user} -d ${POSTGRES_DB:-rasha_core_db}"]
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${POSTGRES_USER:-rasha_user} -d ${POSTGRES_DB:-rasha_core_db}",
+        ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -413,7 +417,14 @@ services:
   rasha-redis:
     image: dhi.io/redis:8
     container_name: rasha-redis
-    command: ["redis-server", "--appendonly", "yes", "--requirepass", "${REDIS_PASSWORD:-rasha_redis_2024}"]
+    command:
+      [
+        "redis-server",
+        "--appendonly",
+        "yes",
+        "--requirepass",
+        "${REDIS_PASSWORD:-rasha_redis_2024}",
+      ]
     environment:
       TZ: UTC
     volumes:
@@ -425,7 +436,14 @@ services:
     networks:
       - rasha-network
     healthcheck:
-      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD:-rasha_redis_2024}", "ping"]
+      test:
+        [
+          "CMD",
+          "redis-cli",
+          "-a",
+          "${REDIS_PASSWORD:-rasha_redis_2024}",
+          "ping",
+        ]
       interval: 10s
       timeout: 5s
       retries: 5
