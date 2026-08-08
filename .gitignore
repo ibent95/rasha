@@ -75,3 +75,7 @@ certs/
 .cache/
 coverage/
 .nyc_output/
+
+# AI CLI / inference local databases
+*.db
+*.db-*
