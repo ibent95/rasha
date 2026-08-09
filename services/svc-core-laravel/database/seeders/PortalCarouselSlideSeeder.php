@@ -14,7 +14,7 @@ class PortalCarouselSlideSeeder extends Seeder
                 "title" => "Welcome to RASHA Platform",
                 "description" =>
                     "Your integrated business management solution for seamless operations across ERP, CRM, and more.",
-                "image_path" => "images/carousel/welcome-rasha.webp",
+                "image_path" => "images/carousel/welcome-rasha.svg",
                 "link" => null,
                 "sort_order" => 1,
                 "is_active" => true,
@@ -23,7 +23,7 @@ class PortalCarouselSlideSeeder extends Seeder
                 "title" => "Streamline Your Sales",
                 "description" =>
                     "Manage leads, track opportunities, and close deals faster with RASHA CRM.",
-                "image_path" => "images/carousel/crm-sales.webp",
+                "image_path" => "images/carousel/crm-sales.svg",
                 "link" => "/crm",
                 "sort_order" => 2,
                 "is_active" => true,
@@ -32,7 +32,7 @@ class PortalCarouselSlideSeeder extends Seeder
                 "title" => "Powerful ERP Features",
                 "description" =>
                     "Inventory management, financial reporting, and supply chain optimization at your fingertips.",
-                "image_path" => "images/carousel/erp-features.webp",
+                "image_path" => "images/carousel/erp-features.svg",
                 "link" => "/erp",
                 "sort_order" => 3,
                 "is_active" => true,
@@ -41,7 +41,7 @@ class PortalCarouselSlideSeeder extends Seeder
                 "title" => "Dynamic Forms for Every Need",
                 "description" =>
                     "Create custom forms, collect data, and automate workflows with our dynamic form builder.",
-                "image_path" => "images/carousel/dynamic-forms.webp",
+                "image_path" => "images/carousel/dynamic-forms.svg",
                 "link" => "/dynamic-form",
                 "sort_order" => 4,
                 "is_active" => true,
@@ -50,7 +50,7 @@ class PortalCarouselSlideSeeder extends Seeder
                 "title" => "Mobile Ready",
                 "description" =>
                     "Access RASHA from anywhere. Fully responsive design for all your devices.",
-                "image_path" => "images/carousel/mobile-ready.webp",
+                "image_path" => "images/carousel/mobile-ready.svg",
                 "link" => null,
                 "sort_order" => 5,
                 "is_active" => false,

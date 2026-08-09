@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 # ============================================
-# Website: CRM (Angular 20 SSR)
+# Website: CRM (Angular 22 SSR)
 # RASHA Super App — CRM Frontend
 # ============================================
 
@@ -19,9 +19,10 @@ RUN npx ng build --configuration=staging
 FROM rasha-node-base AS production
 
 LABEL maintainer="RASHA Super App Team"
-LABEL description="CRM website — Customer Relationship frontend (Angular 20 SSR)"
+LABEL description="CRM website — Customer Relationship frontend (Angular 22 SSR)"
 
 # ── Nginx config ──
+RUN rm -f /etc/nginx/sites-enabled/default
 COPY configs/angular/nginx.conf /etc/nginx/sites-enabled/default.conf
 
 # ── SSR server ──

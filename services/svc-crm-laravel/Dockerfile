@@ -27,7 +27,7 @@ WORKDIR /var/www/html
 COPY services/svc-crm-laravel/composer.json services/svc-crm-laravel/composer.lock ./
 
 RUN mkdir -p /root/.composer/cache
-RUN --mount=type=cache,target=/root/.composer/cache composer install \
+RUN --mount=type=cache,id=composer-svc-crm,target=/root/.composer/cache composer install \
     --no-dev \
     --no-interaction \
     --no-scripts \

@@ -186,9 +186,9 @@ services:
     environment:
       - DB_HOST=rasha-database
       - DB_PORT=5432
-      - DB_DATABASE=${DYNAMIC_FORM_DB_DATABASE:-rasha_dynamic_form_db}
-      - DB_USERNAME=${DYNAMIC_FORM_DB_USERNAME:-rasha_dynamic_form_user}
-      - DB_PASSWORD=${DYNAMIC_FORM_DB_PASSWORD:-rasha_dynamic_form_secret_2024}
+      - DB_DATABASE=${DYNAMIC_FORM_DB_DATABASE:-rasha_dynform_db}
+      - DB_USERNAME=${DYNAMIC_FORM_DB_USERNAME:-rasha_dynform_user}
+      - DB_PASSWORD=${DYNAMIC_FORM_DB_PASSWORD:-rasha_dynform_secret_2024}
     ports:
       - "${SVC_DYNAMIC_FORM_PORT:-8403}:8403"
     depends_on:

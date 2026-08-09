@@ -1,13 +1,13 @@
 # syntax=docker/dockerfile:1
 # ============================================
 # Hardened Base Node.js Image - Ubuntu 24.04 LTS
-# Node.js 20 LTS + Nginx + PM2
+# Node.js 22 LTS + Nginx + PM2
 # RASHA Super App - Modular Microservices
 # ============================================
 FROM ubuntu:24.04 AS node-base
 
 LABEL maintainer="RASHA Super App Team"
-LABEL description="Hardened Node.js 20 LTS image with Nginx on Ubuntu 24.04 LTS"
+LABEL description="Hardened Node.js 22 LTS image with Nginx on Ubuntu 24.04 LTS"
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=UTC
@@ -20,8 +20,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     tzdata \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Node.js 20 LTS
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+# Install Node.js 22 LTS
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
     apt-get install -y --no-install-recommends nodejs && \
     rm -rf /var/lib/apt/lists/* && \
     node --version && npm --version
