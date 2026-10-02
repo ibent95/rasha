@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RASHA Logo v11 — Precise Match</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #1a1a1e; font-family: 'Inter', system-ui, sans-serif; color: #F1EDE3; padding: 40px; }
+  h1 { font-size: 14px; color: #918C82; margin-bottom: 24px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .row { display: flex; gap: 40px; align-items: flex-start; flex-wrap: wrap; margin-bottom: 40px; }
+  .card { background: #10100F; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .card-label { font-size: 11px; color: #918C82; letter-spacing: 0.08em; text-transform: uppercase; }
+  .divider { width: 100%; height: 1px; background: rgba(255,255,255,0.06); margin: 20px 0; }
+</style>
+</head>
+<body>
+
+<h1>RASHA v11 — Exact Visual Design Match</h1>
+
+<div class="row">
+  <div class="card">
+    <div class="card-label">Master Logo — 400×400</div>
+    <svg id="master" viewBox="0 0 800 800" width="400" height="400" xmlns="http://www.w3.org/2000/svg"></svg>
+  </div>
+  <div class="card">
+    <div class="card-label">Favicon — 64×64</div>
+    <svg id="favicon" viewBox="0 0 800 800" width="64" height="64" xmlns="http://www.w3.org/2000/svg"></svg>
+  </div>
+  <div class="card">
+    <div class="card-label">Navbar — 38×38</div>
+    <svg id="navbar" viewBox="0 0 64 64" width="38" height="38" xmlns="http://www.w3.org/2000/svg"></svg>
+  </div>
+</div>
+
+<div class="row">
+  <div class="card">
+    <div class="card-label">OG Banner — 1200×630</div>
+    <svg id="banner" viewBox="0 0 1200 630" width="600" height="315" xmlns="http://www.w3.org/2000/svg"></svg>
+  </div>
+</div>
+
+<div class="divider"></div>
+<h1>Pixel Probe</h1>
+<canvas id="probe" width="800" height="800" style="display:none;"></canvas>
+<pre id="probeOut" style="font-size:11px; line-height:1.4; color:#918C82;"></pre>
+
+<script>
+const P = {
+  obsidian:    '#10100F',
+  emberRed:    '#C83E36',
+  burntOrange: '#D66A2C',
+  forest:      '#3F6B4F',
+  forestDark:  '#2D4F3A',
+  ivory:       '#F1EDE3',
+  stone:       '#918C82',
+};
+
+// === Exact geometry from Rasha-Brand.png, scaled from 716→800 (×1.1173) ===
+// Original center: (358,358) → scaled center: (400, 400)
+// Original bbox: (181,181)-(534,534) → scaled: (202,202)-(597,597)
+const S = 800 / 716; // scale factor
+const O = 400 - 358 * S; // offset to center
+
+function t(x, y) {
+  return [Math.round((x * S + O) * 10) / 10, Math.round((y * S + O) * 10) / 10];
+}
+
+// The exact path data from the PNG, scaled to 800×800
+function exactGeometryPath() {
+  // Parse the original path and scale all coordinates
+  const origPath = "M508.749 317.399C516.777 287.314 508.991 253.884 485.389 230.282C461.788 206.681 428.36 198.895 398.273 206.923C376.231 184.928 343.39 174.956 311.148 183.596C278.906 192.234 255.45 217.292 247.36 247.361C217.291 255.451 192.233 278.91 183.595 311.149C174.957 343.391 184.927 376.232 206.924 398.274C198.896 428.359 206.683 461.789 230.284 485.391C253.885 508.992 287.313 516.779 317.401 508.75C339.442 530.745 372.286 540.717 404.525 532.079C436.767 523.441 460.223 498.384 468.313 468.315C498.383 460.224 523.44 436.766 532.078 404.526C540.716 372.285 530.747 339.443 508.749 317.402V317.399ZM470.899 244.776C486.892 260.77 493.488 282.601 490.687 303.412L415.577 260.046C412.411 258.218 408.509 258.218 405.345 260.046L317.401 310.82V277.526C317.401 275.191 318.652 273.005 320.676 271.837L387.644 233.174C414.178 218.353 448.346 222.223 470.901 244.776H470.899ZM357.837 311.144L398.275 334.491V381.185L357.837 404.532L317.398 381.185V334.491L357.837 311.144ZM264.776 269.693C265.207 239.305 285.644 211.649 316.453 203.393C338.3 197.54 360.505 202.744 377.127 215.573L302.014 258.937C298.848 260.764 296.898 264.144 296.898 267.798V369.346L268.065 352.699C266.043 351.531 264.776 349.353 264.776 347.017V269.691V269.693ZM203.391 316.454C209.244 294.608 224.854 277.978 244.276 269.999V356.73C244.276 360.384 246.226 363.763 249.392 365.591L337.337 416.365L308.503 433.013C306.481 434.181 303.961 434.188 301.939 433.02L234.971 394.357C208.868 378.789 195.138 347.261 203.391 316.454ZM244.775 470.9C228.781 454.906 222.186 433.075 224.986 412.264L300.096 455.63C303.263 457.457 307.164 457.457 310.328 455.63L398.273 404.856V438.149C398.273 440.485 397.022 442.671 394.997 443.839L328.029 482.502C301.495 497.322 267.327 493.452 244.772 470.9H244.775ZM450.897 445.982C450.466 476.371 430.029 504.027 399.22 512.283C377.373 518.136 355.168 512.932 338.547 500.102L413.659 456.738C416.826 454.911 418.775 451.532 418.775 447.877V346.329L447.609 362.977C449.631 364.145 450.897 366.323 450.897 368.659V445.985V445.982ZM512.282 399.221C506.429 421.068 490.819 437.697 471.397 445.676V358.946C471.397 355.292 469.448 351.912 466.281 350.085L378.336 299.311L407.17 282.663C409.192 281.495 411.712 281.487 413.734 282.655L480.702 321.318C506.805 336.887 520.536 368.415 512.282 399.221Z";
+
+  // Scale all numbers in the path
+  return origPath.replace(/(\d+\.?\d*)/g, (match) => {
+    const num = parseFloat(match);
+    return (num * S + O).toFixed(1);
+  });
+}
+
+// === Build the master logo ===
+function buildMaster(svg) {
+  svg.innerHTML = `
+  <defs>
+    <linearGradient id="rGrad" gradientUnits="userSpaceOnUse" x1="350" y1="620" x2="560" y2="180">
+      <stop offset="0%" stop-color="${P.emberRed}"/>
+      <stop offset="100%" stop-color="${P.burntOrange}"/>
+    </linearGradient>
+    <linearGradient id="orbitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="${P.forest}" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="${P.forest}" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="${P.forest}" stop-opacity="0.15"/>
+    </linearGradient>
+    <radialGradient id="starGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="${P.ivory}" stop-opacity="0.35"/>
+      <stop offset="40%" stop-color="${P.ivory}" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="${P.ivory}" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="800" height="800" fill="${P.obsidian}"/>
+
+  <!-- Star glow -->
+  <circle cx="590" cy="210" r="80" fill="url(#starGlow)"/>
+
+  <!-- Exact geometry from visual design — Forest green -->
+  <path d="${exactGeometryPath()}" fill="${P.forest}" opacity="0.7"/>
+
+  <!-- Orbit ring — tilted ellipse behind/through the geometry -->
+  <ellipse cx="400" cy="400" rx="290" ry="195" transform="rotate(-12 400 400)"
+    fill="none" stroke="url(#orbitGrad)" stroke-width="5" stroke-linecap="round" opacity="0.85"/>
+
+  <!-- Planetary node on orbit -->
+  <circle cx="660" cy="340" r="11" fill="${P.burntOrange}" opacity="0.9"/>
+
+  <!-- R letterform — bold, geometric, over the geometry -->
+  <!-- Stem -->
+  <path d="M 340,610 L 340,190"
+    fill="none" stroke="url(#rGrad)" stroke-width="58" stroke-linecap="round"/>
+  <!-- Bowl -->
+  <path d="M 340,190 C 430,175 560,225 560,350 C 560,440 490,490 400,490"
+    fill="none" stroke="url(#rGrad)" stroke-width="58"
+    stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Leg -->
+  <path d="M 400,490 L 590,610"
+    fill="none" stroke="url(#rGrad)" stroke-width="58" stroke-linecap="round"/>
+
+  <!-- Star — 4-point compass rose -->
+  <path d="M 590,170 L 598,200 L 628,210 L 598,220 L 590,250 L 582,220 L 552,210 L 582,200 Z"
+    fill="${P.ivory}"/>
+
+  <!-- Wordmark -->
+  <text x="400" y="720" font-family="'Sora','Inter',system-ui,sans-serif" font-size="48" font-weight="700" fill="${P.ivory}" letter-spacing="12" text-anchor="middle">RASHA</text>
+  <text x="400" y="755" font-family="'Inter',system-ui,sans-serif" font-size="14" font-weight="500" fill="${P.stone}" letter-spacing="5" text-anchor="middle">RUANG IMPIAN</text>
+  `;
+}
+
+buildMaster(document.getElementById('master'));
+buildMaster(document.getElementById('favicon'));
+
+// === Navbar (64×64) ===
+(function() {
+  const svg = document.getElementById('navbar');
+  // Scale the geometry path for 64×64
+  const S64 = 64 / 716;
+  const O64 = 32 - 358 * S64;
+  const origPath = "M508.749 317.399C516.777 287.314 508.991 253.884 485.389 230.282C461.788 206.681 428.36 198.895 398.273 206.923C376.231 184.928 343.39 174.956 311.148 183.596C278.906 192.234 255.45 217.292 247.36 247.361C217.291 255.451 192.233 278.91 183.595 311.149C174.957 343.391 184.927 376.232 206.924 398.274C198.896 428.359 206.683 461.789 230.284 485.391C253.885 508.992 287.313 516.779 317.401 508.75C339.442 530.745 372.286 540.717 404.525 532.079C436.767 523.441 460.223 498.384 468.313 468.315C498.383 460.224 523.44 436.766 532.078 404.526C540.716 372.285 530.747 339.443 508.749 317.402V317.399ZM470.899 244.776C486.892 260.77 493.488 282.601 490.687 303.412L415.577 260.046C412.411 258.218 408.509 258.218 405.345 260.046L317.401 310.82V277.526C317.401 275.191 318.652 273.005 320.676 271.837L387.644 233.174C414.178 218.353 448.346 222.223 470.901 244.776H470.899ZM357.837 311.144L398.275 334.491V381.185L357.837 404.532L317.398 381.185V334.491L357.837 311.144ZM264.776 269.693C265.207 239.305 285.644 211.649 316.453 203.393C338.3 197.54 360.505 202.744 377.127 215.573L302.014 258.937C298.848 260.764 296.898 264.144 296.898 267.798V369.346L268.065 352.699C266.043 351.531 264.776 349.353 264.776 347.017V269.691V269.693ZM203.391 316.454C209.244 294.608 224.854 277.978 244.276 269.999V356.73C244.276 360.384 246.226 363.763 249.392 365.591L337.337 416.365L308.503 433.013C306.481 434.181 303.961 434.188 301.939 433.02L234.971 394.357C208.868 378.789 195.138 347.261 203.391 316.454ZM244.775 470.9C228.781 454.906 222.186 433.075 224.986 412.264L300.096 455.63C303.263 457.457 307.164 457.457 310.328 455.63L398.273 404.856V438.149C398.273 440.485 397.022 442.671 394.997 443.839L328.029 482.502C301.495 497.322 267.327 493.452 244.772 470.9H244.775ZM450.897 445.982C450.466 476.371 430.029 504.027 399.22 512.283C377.373 518.136 355.168 512.932 338.547 500.102L413.659 456.738C416.826 454.911 418.775 451.532 418.775 447.877V346.329L447.609 362.977C449.631 364.145 450.897 366.323 450.897 368.659V445.985V445.982ZM512.282 399.221C506.429 421.068 490.819 437.697 471.397 445.676V358.946C471.397 355.292 469.448 351.912 466.281 350.085L378.336 299.311L407.17 282.663C409.192 281.495 411.712 281.487 413.734 282.655L480.702 321.318C506.805 336.887 520.536 368.415 512.282 399.221Z";
+  const scaledPath = origPath.replace(/(\d+\.?\d*)/g, (m) => (parseFloat(m) * S64 + O64).toFixed(2));
+
+  svg.innerHTML = `
+  <defs>
+    <linearGradient id="nrGrad" gradientUnits="userSpaceOnUse" x1="21" y1="50" x2="45" y2="14">
+      <stop offset="0%" stop-color="${P.emberRed}"/>
+      <stop offset="100%" stop-color="${P.burntOrange}"/>
+    </linearGradient>
+    <linearGradient id="noGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="${P.forest}" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="${P.forest}" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="${P.forest}" stop-opacity="0.15"/>
+    </linearGradient>
+    <radialGradient id="nsg">
+      <stop offset="0%" stop-color="${P.ivory}" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="${P.ivory}" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="64" height="64" rx="12" fill="${P.obsidian}"/>
+  <circle cx="47" cy="17" r="5" fill="url(#nsg)"/>
+  <path d="${scaledPath}" fill="${P.forest}" opacity="0.65"/>
+  <ellipse cx="32" cy="32" rx="23" ry="16" transform="rotate(-12 32 32)"
+    fill="none" stroke="url(#noGrad)" stroke-width="1.2" stroke-linecap="round" opacity="0.85"/>
+  <circle cx="52" cy="27" r="2" fill="${P.burntOrange}" opacity="0.9"/>
+  <path d="M 24,48 L 24,16" fill="none" stroke="url(#nrGrad)" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M 24,16 C 32,15 42,18 42,26 C 42,31 36,34 30,34" fill="none" stroke="url(#nrGrad)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 30,34 L 45,46" fill="none" stroke="url(#nrGrad)" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M 45,13 L 46.2,15.5 L 48.8,16.2 L 46.2,16.9 L 45,19.5 L 43.8,16.9 L 41.2,16.2 L 43.8,15.5 Z" fill="${P.ivory}"/>
+  `;
+})();
+
+// === Banner (1200×630) ===
+(function() {
+  const svg = document.getElementById('banner');
+  const SB = 1200 / 716;
+  const OB = 315 - 358 * SB; // center vertically in 630/2=315
+  const origPath = "M508.749 317.399C516.777 287.314 508.991 253.884 485.389 230.282C461.788 206.681 428.36 198.895 398.273 206.923C376.231 184.928 343.39 174.956 311.148 183.596C278.906 192.234 255.45 217.292 247.36 247.361C217.291 255.451 192.233 278.91 183.595 311.149C174.957 343.391 184.927 376.232 206.924 398.274C198.896 428.359 206.683 461.789 230.284 485.391C253.885 508.992 287.313 516.779 317.401 508.75C339.442 530.745 372.286 540.717 404.525 532.079C436.767 523.441 460.223 498.384 468.313 468.315C498.383 460.224 523.44 436.766 532.078 404.526C540.716 372.285 530.747 339.443 508.749 317.402V317.399ZM470.899 244.776C486.892 260.77 493.488 282.601 490.687 303.412L415.577 260.046C412.411 258.218 408.509 258.218 405.345 260.046L317.401 310.82V277.526C317.401 275.191 318.652 273.005 320.676 271.837L387.644 233.174C414.178 218.353 448.346 222.223 470.901 244.776H470.899ZM357.837 311.144L398.275 334.491V381.185L357.837 404.532L317.398 381.185V334.491L357.837 311.144ZM264.776 269.693C265.207 239.305 285.644 211.649 316.453 203.393C338.3 197.54 360.505 202.744 377.127 215.573L302.014 258.937C298.848 260.764 296.898 264.144 296.898 267.798V369.346L268.065 352.699C266.043 351.531 264.776 349.353 264.776 347.017V269.691V269.693ZM203.391 316.454C209.244 294.608 224.854 277.978 244.276 269.999V356.73C244.276 360.384 246.226 363.763 249.392 365.591L337.337 416.365L308.503 433.013C306.481 434.181 303.961 434.188 301.939 433.02L234.971 394.357C208.868 378.789 195.138 347.261 203.391 316.454ZM244.775 470.9C228.781 454.906 222.186 433.075 224.986 412.264L300.096 455.63C303.263 457.457 307.164 457.457 310.328 455.63L398.273 404.856V438.149C398.273 440.485 397.022 442.671 394.997 443.839L328.029 482.502C301.495 497.322 267.327 493.452 244.772 470.9H244.775ZM450.897 445.982C450.466 476.371 430.029 504.027 399.22 512.283C377.373 518.136 355.168 512.932 338.547 500.102L413.659 456.738C416.826 454.911 418.775 451.532 418.775 447.877V346.329L447.609 362.977C449.631 364.145 450.897 366.323 450.897 368.659V445.985V445.982ZM512.282 399.221C506.429 421.068 490.819 437.697 471.397 445.676V358.946C471.397 355.292 469.448 351.912 466.281 350.085L378.336 299.311L407.17 282.663C409.192 281.495 411.712 281.487 413.734 282.655L480.702 321.318C506.805 336.887 520.536 368.415 512.282 399.221Z";
+  const scaledPath = origPath.replace(/(\d+\.?\d*)/g, (m) => (parseFloat(m) * SB + OB).toFixed(1));
+
+  svg.innerHTML = `
+  <defs>
+    <linearGradient id="brGrad" gradientUnits="userSpaceOnUse" x1="350" y1="580" x2="620" y2="120">
+      <stop offset="0%" stop-color="${P.emberRed}"/>
+      <stop offset="100%" stop-color="${P.burntOrange}"/>
+    </linearGradient>
+    <linearGradient id="boGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="${P.forest}" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="${P.forest}" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="${P.forest}" stop-opacity="0.15"/>
+    </linearGradient>
+    <radialGradient id="bsg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="${P.ivory}" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="${P.ivory}" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="${P.obsidian}"/>
+  <circle cx="780" cy="130" r="70" fill="url(#bsg)"/>
+  <path d="${scaledPath}" fill="${P.forest}" opacity="0.6"/>
+  <ellipse cx="500" cy="315" rx="280" ry="190" transform="rotate(-12 500 315)"
+    fill="none" stroke="url(#boGrad)" stroke-width="4.5" stroke-linecap="round" opacity="0.85"/>
+  <circle cx="740" cy="248" r="10" fill="${P.burntOrange}" opacity="0.9"/>
+  <path d="M 380,560 L 380,130" fill="none" stroke="url(#brGrad)" stroke-width="52" stroke-linecap="round"/>
+  <path d="M 380,130 C 470,115 600,170 600,300 C 600,400 525,445 430,445"
+    fill="none" stroke="url(#brGrad)" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 430,445 L 640,560"
+    fill="none" stroke="url(#brGrad)" stroke-width="52" stroke-linecap="round"/>
+  <path d="M 640,90 L 648,120 L 678,130 L 648,140 L 640,170 L 632,140 L 602,130 L 632,120 Z" fill="${P.ivory}"/>
+  <text x="850" y="300" font-family="'Sora','Inter',system-ui,sans-serif" font-size="60" font-weight="700" fill="${P.ivory}" letter-spacing="10">RASHA</text>
+  <text x="850" y="340" font-family="'Inter',system-ui,sans-serif" font-size="16" font-weight="500" fill="${P.stone}" letter-spacing="5">RUANG IMPIAN</text>
+  `;
+})();
+
+// === Pixel probe ===
+setTimeout(() => {
+  const canvas = document.getElementById('probe');
+  const ctx = canvas.getContext('2d');
+  const svgEl = document.getElementById('master');
+  const svgData = new XMLSerializer().serializeToString(svgEl);
+  const img = new Image();
+  img.onload = () => {
+    ctx.drawImage(img, 0, 0, 800, 800);
+    const probes = [
+      { name: 'bg-corner', x: 30, y: 30 },
+      { name: 'geo-top', x: 400, y: 225 },
+      { name: 'geo-center', x: 400, y: 400 },
+      { name: 'geo-left', x: 225, y: 400 },
+      { name: 'geo-right', x: 575, y: 400 },
+      { name: 'geo-bottom', x: 400, y: 575 },
+      { name: 'R-stem', x: 340, y: 400 },
+      { name: 'R-bowl', x: 520, y: 320 },
+      { name: 'R-leg', x: 500, y: 550 },
+      { name: 'star', x: 590, y: 210 },
+      { name: 'orbit-top', x: 400, y: 210 },
+      { name: 'orbit-right', x: 680, y: 350 },
+      { name: 'planet', x: 660, y: 340 },
+      { name: 'wordmark', x: 400, y: 720 },
+    ];
+    let out = '';
+    for (const p of probes) {
+      const d = ctx.getImageData(p.x, p.y, 1, 1).data;
+      const hex = '#' + [d[0],d[1],d[2]].map(v=>v.toString(16).padStart(2,'0')).join('');
+      out += `${p.name.padEnd(16)} (${String(p.x).padStart(3)},${String(p.y).padStart(3)})  ${hex}  a=${d[3]}\n`;
+    }
+    document.getElementById('probeOut').textContent = out;
+  };
+  img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgData);
+}, 300);
+</script>
+</body>
+</html>

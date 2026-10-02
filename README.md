@@ -76,11 +76,12 @@ docker buildx bake && docker compose up -d
 
 |   Color    |     Name      |   HEX   |
 |------------|---------------|---------|
-| Primary    | Crimson Red   | #E53935 |
-| Secondary  | Blaze Orange  | #FB8C00 |
-| Accent     | Vivid Yellow  | #FDD835 |
-| Ecosystem  | Eco Green     | #4CAF50 |
-| Background | Dark Obsidian | #121214 |
+| Foundation | Obsidian      | #10100F |
+| Primary    | Ember Red     | #C83E36 |
+| Secondary  | Burnt Orange  | #D66A2C |
+| Ecosystem  | Forest        | #3F6B4F |
+| Light      | Warm Ivory    | #F1EDE3 |
+| Neutral    | Stone         | #918C82 |
 
 Slogan: **RASHA: Ruang Impian dalam Satu Genggaman**
 

@@ -1,73 +1,101 @@
-/* ============================================
-   RASHA Super App - Design Tokens & CSS Variables
-   Brand: Crimson Red, Blaze Orange, Vivid Yellow, Eco Green
+  /* ============================================
+   RASHA Design Tokens & CSS Variables
+   Brand: Ember/Forest — approved palette
+   RASHA = Manoratha (Dream) + Akasha (Universe)
+   "Ruang Impian dalam Satu Genggaman"
    ============================================ */
 
 :root {
-  /* ============================================
-     Brand Colors
-     ============================================ */
-  --rasha-primary: #E53935;          /* Crimson Red - Hasrat, energi, keberanian */
-  --rasha-primary-light: #EF5350;
-  --rasha-primary-dark: #C62828;
-  --rasha-primary-rgb: 229, 57, 53;
+  /* ------------------------------------------
+     BRAND ESSENCE
+     RASHA = Manoratha (Dream) + Akasha (Universe)
+     "Ruang Impian dalam Satu Genggaman"
+     ------------------------------------------ */
 
-  --rasha-secondary: #FB8C00;        /* Blaze Orange - Kreativitas, kehangatan */
-  --rasha-secondary-light: #FFA726;
-  --rasha-secondary-dark: #EF6C00;
-  --rasha-secondary-rgb: 251, 140, 0;
+  /* ------------------------------------------
+     Color Palette — Ember / Forest (Approved)
+     Visual weight: 60% Obsidian / 20% Ember+Orange
+     10% Forest / 5% Ivory / 5% Stone
+     ------------------------------------------ */
 
-  --rasha-accent-yellow: #FDD835;    /* Vivid Yellow - Kejayaan, masa depan cerah */
-  --rasha-accent-yellow-light: #FFEE58;
-  --rasha-accent-yellow-dark: #F9A825;
-  --rasha-accent-yellow-rgb: 253, 216, 53;
+  --rasha-obsidian: #10100F;         /* Foundation — depth, premium, tech */
+  --rasha-ember: #C83E36;           /* Primary — confidence, action, identity */
+  --rasha-ember-light: #D95550;
+  --rasha-ember-dark: #A8322B;
+  --rasha-ember-rgb: 200, 62, 54;
 
-  --rasha-accent-green: #4CAF50;     /* Eco Green - Pertumbuhan, keberlanjutan */
-  --rasha-accent-green-light: #66BB6A;
-  --rasha-accent-green-dark: #388E3C;
-  --rasha-accent-green-rgb: 76, 175, 80;
+  --rasha-orange: #D66A2C;          /* Secondary — creativity, energy, warmth */
+  --rasha-orange-light: #E4854E;
+  --rasha-orange-dark: #B5561E;
+  --rasha-orange-rgb: 214, 106, 44;
+
+  --rasha-forest: #3F6B4F;          /* Accent/Ecosystem — growth, balance */
+  --rasha-forest-light: #5A8A6A;
+  --rasha-forest-dark: #2D4F3A;
+  --rasha-forest-rgb: 63, 107, 79;
+
+  --rasha-ivory: #F1EDE3;           /* Light — clarity, humanity */
+  --rasha-stone: #918C82;           /* Neutral — secondary text, borders */
 
   /* ============================================
      Neutral Colors
      ============================================ */
-  --rasha-white: #FFFFFF;
-  --rasha-bg-dark: #121214;          /* Dark Obsidian - Latar premium */
-  --rasha-bg-dark-rgb: 18, 18, 20;
-  --rasha-bg-card: #1E1E22;
-  --rasha-bg-card-hover: #2A2A2F;
-  --rasha-bg-surface: #252529;
-  --rasha-bg-input: #1A1A1E;
+  --rasha-white: var(--rasha-ivory);
+  --rasha-white-pure: #FFFFFF;
+  --rasha-stone-var: var(--rasha-stone);
+  --rasha-bg-dark: var(--rasha-obsidian);
+  --rasha-bg-dark-rgb: 16, 16, 15;
+  --rasha-bg-card: #1A1A18;
+  --rasha-bg-card-hover: #242422;
+  --rasha-bg-surface: #1E1E1C;
+  --rasha-bg-input: #151514;
 
-  --rasha-text-primary: #FFFFFF;
-  --rasha-text-secondary: #A0A0A6;
-  --rasha-text-tertiary: #6E6E73;
-  --rasha-text-muted: #48484A;
+  --rasha-text-primary: var(--rasha-ivory);
+  --rasha-text-secondary: var(--rasha-stone);
+  --rasha-text-tertiary: #6E6A60;
+  --rasha-text-muted: #4A4740;
 
-  --rasha-border: #38383A;
-  --rasha-border-light: #2C2C2E;
-  --rasha-divider: rgba(255, 255, 255, 0.06);
+  --rasha-border: #2E2D2A;
+  --rasha-border-light: #252422;
+  --rasha-divider: rgba(241, 237, 227, 0.06);
+
+  /* ------------------------------------------
+     Color Aliases (legacy names → brand names)
+     ------------------------------------------
+     --rasha-primary       → --rasha-ember (Ember Red #C83E36)
+     --rasha-secondary     → --rasha-orange (Burnt Orange #D66A2C)
+     --rasha-accent-green  → --rasha-forest (Forest #3F6B4F)
+     --rasha-white         → --rasha-ivory (Warm Ivory #F1EDE3)
+     --rasha-bg-dark       → --rasha-obsidian (Obsidian #10100F)
+     ------------------------------------------ */
+  --rasha-primary: var(--rasha-ember);
+  --rasha-secondary: var(--rasha-orange);
+  --rasha-accent-green: var(--rasha-forest);
 
   /* ============================================
      Status Colors
      ============================================ */
-  --rasha-success: #4CAF50;
-  --rasha-warning: #FB8C00;
-  --rasha-danger: #E53935;
-  --rasha-info: #2196F3;
+  --rasha-success: var(--rasha-forest);
+  --rasha-warning: var(--rasha-orange);
+  --rasha-danger: var(--rasha-ember);
+  --rasha-info: #4A7A9B;
 
   /* ============================================
-     Gradients
+     Gradients — selective digital use only.
+     Logo must stay flat / recognizable in solid.
      ============================================ */
-  --rasha-gradient-brand: linear-gradient(135deg, var(--rasha-primary) 0%, var(--rasha-secondary) 50%, var(--rasha-accent-yellow) 100%);
-  --rasha-gradient-brand-v: linear-gradient(180deg, var(--rasha-primary) 0%, var(--rasha-secondary) 50%, var(--rasha-accent-yellow) 100%);
-  --rasha-gradient-green: linear-gradient(135deg, var(--rasha-accent-green) 0%, #2E7D32 100%);
-  --rasha-gradient-dark: linear-gradient(180deg, #1E1E22 0%, #121214 100%);
-  --rasha-gradient-glow: linear-gradient(135deg, rgba(229, 57, 53, 0.15) 0%, rgba(251, 140, 0, 0.15) 50%, rgba(253, 216, 53, 0.15) 100%);
+  --rasha-gradient-brand: linear-gradient(135deg, var(--rasha-ember) 0%, var(--rasha-orange) 100%);
+  --rasha-gradient-brand-v: linear-gradient(180deg, var(--rasha-ember) 0%, var(--rasha-orange) 100%);
+  --rasha-gradient-green: linear-gradient(135deg, var(--rasha-forest) 0%, var(--rasha-forest-dark) 100%);
+  --rasha-gradient-dark: linear-gradient(180deg, #1A1A18 0%, var(--rasha-obsidian) 100%);
+  --rasha-gradient-glow: linear-gradient(135deg, rgba(200, 62, 54, 0.15) 0%, rgba(214, 106, 44, 0.15) 100%);
+  --rasha-gradient-ivory-glow: linear-gradient(135deg, rgba(241, 237, 227, 0.08) 0%, rgba(241, 237, 227, 0) 100%);
 
   /* ============================================
      Typography
      ============================================ */
   --rasha-font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --rasha-font-display: 'Sora', 'Inter', 'Segoe UI', system-ui, sans-serif;
   --rasha-font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
   --rasha-text-xs: 0.75rem;    /* 12px */
@@ -116,9 +144,9 @@
   --rasha-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
   --rasha-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
   --rasha-shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.6);
-  --rasha-shadow-glow-primary: 0 0 20px rgba(229, 57, 53, 0.3);
-  --rasha-shadow-glow-secondary: 0 0 20px rgba(251, 140, 0, 0.3);
-  --rasha-shadow-glow-green: 0 0 20px rgba(76, 175, 80, 0.3);
+  --rasha-shadow-glow-primary: 0 0 20px rgba(200, 62, 54, 0.3);
+  --rasha-shadow-glow-secondary: 0 0 20px rgba(214, 106, 44, 0.3);
+  --rasha-shadow-glow-green: 0 0 20px rgba(63, 107, 79, 0.3);
 
   /* ============================================
      Transitions

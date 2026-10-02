@@ -67,139 +67,72 @@ yang ramah lingkungan dan aman (Hijau & Putih).
 
 ## 3. IDENTITAS VISUAL (KODE SVG ASSET)
 
-Kode SVG di bawah ini adalah representasi logo RASHA. Logo ini menggabungkan
-huruf "R" geometris yang melebur dinamis menggunakan gradien Merah-Jingga-Kuning,
-melintasi sebuah cincin orbit Hijau (simbol Akasha/Ruang Multi-layanan),
-dan berujung pada Bintang Kutub Putih (simbol Manoratha/Impian tertinggi).
+Kode SVG di bawah ini adalah representasi logo RASHA v9 (Professional). Logo ini
+menggabungkan huruf "R" geometris tebal yang dibangun dari tiga stroke terstruktur
+(batang vertikal, lengkung mangkuk melengkung, kaki diagonal) menggunakan gradien
+Merah-Jingga-Kuning (passion -> kreativitas -> kejayaan). Sebuah cincin orbit Hijau
+miring mengelilingi R dari belakang (simbol Akasha/Ruang Multi-layanan) dengan
+gradien kedalaman (terang -> redup) yang menunjukkan dimensi 3D. Kaki huruf R
+menembus cincin orbit dan berujung pada Bintang Kutub Putih (simbol Manoratha/
+Impian tertinggi) yang berbentuk kompas 4-titik memanjang. Titik Bulan kecil di
+sisi berlawanan cincin melengkapi pemandangan "semesta kecil".
+
+Keunggulan v9 dibanding versi sebelumnya:
+- Huruf R menggunakan stroke tebal 62px dengan geometri yang presisi (bukan sketsa)
+- Gradien menggunakan gradientUnits="userSpaceOnUse" agar bekerja pada semua bentuk
+- Konsisten di semua ukuran dari favicon 16px hingga billboard
 Anda dapat menyalin (copy) seluruh kode di bawah ini secara utuh dan menyimpannya
 sebagai file berformat .svg untuk langsung digunakan pada web atau aplikasi:
 
 ```svg
-<svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 800 800"
-  width="100%"
-  height="100%"
->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%">
   <defs>
-    <!-- Gradien Utama R: Merah -> Jingga -> Kuning -->
-    <linearGradient id="r-grad" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#E53935" />
-      <stop offset="50%" stop-color="#FB8C00" />
-      <stop offset="100%" stop-color="#FDD835" />
+    <linearGradient id="rGrad" gradientUnits="userSpaceOnUse" x1="260" y1="590" x2="560" y2="210">
+      <stop offset="0%" stop-color="#E53935"/>
+      <stop offset="50%" stop-color="#FB8C00"/>
+      <stop offset="100%" stop-color="#FDD835"/>
     </linearGradient>
-
-    <!-- Gradien Aksen Cincin/Lintasan: Hijau Energi -> Transparan -->
-    <linearGradient id="orbit-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#4CAF50" stop-opacity="0.8" />
-      <stop offset="100%" stop-color="#4CAF50" stop-opacity="0.1" />
+    <linearGradient id="orbitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4CAF50" stop-opacity="0.95"/>
+      <stop offset="55%" stop-color="#4CAF50" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#4CAF50" stop-opacity="0.10"/>
     </linearGradient>
-
-    <!-- Drop Shadow untuk Efek Kedalaman Dimensi -->
-    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow
-        dx="4"
-        dy="10"
-        stdDeviation="8"
-        flood-color="#000000"
-        flood-opacity="0.25" />
-    </filter>
+    <radialGradient id="starGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FDD835" stop-opacity="0.4"/>
+      <stop offset="40%" stop-color="#FDD835" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#FDD835" stop-opacity="0"/>
+    </radialGradient>
   </defs>
 
-  <!-- Background Kontemporer Minimalistik (Dark Mode) -->
-  <rect width="100%" height="100%" fill="#121214"/>
+  <rect width="800" height="800" fill="#121214"/>
 
-  <!-- Elemen Estetik: Kisi Geometri Ruang Semesta (Grid System) -->
-  <g stroke="#ffffff" stroke-opacity="0.03" stroke-width="1">
-    <circle cx="400" cy="400" r="300" fill="none"/>
-    <circle cx="400" cy="400" r="200" fill="none"/>
-    <line x1="100" y1="400" x2="700" y2="400" />
-    <line x1="400" y1="100" x2="400" y2="700" />
-  </g>
+  <!-- Cahaya Bintang (di belakang segalanya) -->
+  <circle cx="560" cy="565" r="75" fill="url(#starGlow)"/>
 
-  <!-- KOMPONEN LOGO UTAMA -->
-  <g filter="url(#shadow)">
+  <!-- Cincin Orbit Akasha: ellipse miring di belakang R -->
+  <ellipse cx="410" cy="400" rx="260" ry="195" transform="rotate(-18 410 400)"
+    fill="none" stroke="url(#orbitGrad)" stroke-width="18"
+    stroke-linecap="round" opacity="0.85"/>
 
-    <!--
-      Elemen 1: Cincin Ruang/Akasha (Hijau) - Melambangkan Ekosistem Multi-layanan
-    -->
-    <path d="M 280,580 A 240,200 45 1 0 540,250"
-      fill="none"
-      stroke="url(#orbit-grad)"
-      stroke-width="24"
-      stroke-linecap="round" />
+  <!-- Huruf R Geometris: batang -> lengkung mangkuk -> kaki diagonal -->
+  <path d="M 300,580 L 300,230"
+    fill="none" stroke="url(#rGrad)" stroke-width="62" stroke-linecap="round"/>
+  <path d="M 300,230 C 400,218 530,260 530,370 C 530,450 460,490 380,490"
+    fill="none" stroke="url(#rGrad)" stroke-width="62"
+    stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 380,490 L 560,565"
+    fill="none" stroke="url(#rGrad)" stroke-width="62" stroke-linecap="round"/>
 
-    <!--
-      Elemen 2: Huruf R Geometris (Merah-Jingga-Kuning)
-      - Melambangkan Dinamisme & Impian
-    -->
-    <!-- Batang Vertikal Kiri R -->
-    <path d="M 300,220 L 300,580"
-    fill="none" stroke="url(#r-grad)" stroke-width="48" stroke-linecap="round" />
+  <!-- Bintang Kutub Putih: kompas 4-titik memanjang -->
+  <path d="M 560,525 L 567,550 L 592,565 L 567,580 L 560,605 L 553,580 L 528,565 L 553,550 Z"
+    fill="#FFFFFF"/>
 
-    <!-- Lengkungan Kepala R (Loop) -->
-    <path d="M 300,220 C 450,220 480,380 300,380"
-      fill="none"
-      stroke="url(#r-grad)"
-      stroke-width="48"
-      stroke-linecap="round"
-      stroke-linejoin="round" />
+  <!-- Titik Bulan di sisi berlawanan cincin -->
+  <circle cx="200" cy="310" r="11" fill="#FFFFFF" opacity="0.85"/>
 
-    <!-- Kaki Kanan R yang Melesat Keluar Melintasi Cincin -->
-    <path d="M 320,380 L 520,580"
-      fill="none"
-      stroke="url(#r-grad)"
-      stroke-width="48"
-      stroke-linecap="round" />
-
-    <!--
-      Elemen 3: Bintang Impian / Polaris (Putih Bersih)
-      - Simbol Manoratha (Cita-cita Tinggi)
-    -->
-    <path
-      d="
-        M 520,580
-        L 525,550
-        L 555,545
-        L 525,540
-        L 520,510
-        L 515,540
-        L 485,545
-        L 515,550
-        Z
-      "
-      fill="#FFFFFF" />
-
-    <circle
-      cx="520"
-      cy="545"
-      r="4"
-      fill="#FFFFFF"
-      filter="blur(1px)" />
-  </g>
-
-  <!-- Teks Brand Pendukung (Putih Elegan) -->
-  <text x="400" y="700"
-    font-family="'Inter', 'Segoe UI', sans-serif"
-    font-size="42"
-    font-weight="800"
-    fill="#FFFFFF"
-    letter-spacing="12"
-    text-anchor="middle"
-  >
-    RASHA
-  </text>
-
-  <text x="400" y="740"
-    font-family="'Inter', 'Segoe UI', sans-serif"
-    font-size="16"
-    font-weight="500"
-    fill="#8E8E93"
-    letter-spacing="4"
-    text-anchor="middle"
-  >
-    RUANG IMPIAN
-  </text>
+  <!-- Wordmark -->
+  <text x="400" y="700" font-family="Inter,'Segoe UI',system-ui,sans-serif" font-size="44" font-weight="800" fill="#FFFFFF" letter-spacing="14" text-anchor="middle">RASHA</text>
+  <text x="400" y="738" font-family="Inter,'Segoe UI',system-ui,sans-serif" font-size="15" font-weight="500" fill="#8E8E93" letter-spacing="5" text-anchor="middle">RUANG IMPIAN</text>
 </svg>
 ```
 

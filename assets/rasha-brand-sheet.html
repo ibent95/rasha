@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RASHA — Brand Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     RASHA Brand Sheet — Ember / Forest palette (approved)
+     Palette source: assets/styles/_design-tokens.scss
+     Obsidian #10100F · Ember #C83E36 · Burnt Orange #D66A2C
+     Forest #3F6B4F · Warm Ivory #F1EDE3 · Stone #918C82
+     ============================================================ */
+  :root {
+    --obsidian: #10100F;
+    --panel:    #161614;
+    --line:     #26251F;
+    --line-2:   #33322B;
+    --ember:    #C83E36;
+    --orange:   #D66A2C;
+    --forest:   #3F6B4F;
+    --ivory:    #F1EDE3;
+    --stone:    #918C82;
+    --stone-2:  #6B675E;
+    --font-display: 'Sora', 'Inter', system-ui, sans-serif;
+    --font-body:    'Inter', system-ui, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { background: #0B0B0A; }
+  body {
+    background: var(--obsidian);
+    color: var(--ivory);
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+    padding: 28px;
+  }
+  .sheet { max-width: 1560px; margin: 0 auto; }
+
+  .kicker {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--stone);
+  }
+  .green  { color: var(--forest); }
+  .ember  { color: var(--ember); }
+  .orange { color: var(--orange); }
+
+  /* ============ HEADER ============ */
+  header {
+    display: grid;
+    grid-template-columns: 330px 1fr 600px;
+    align-items: stretch;
+    padding: 6px 0 26px;
+  }
+  header .col-1 { padding-right: 28px; }
+  header .what-next { color: var(--forest); margin-bottom: 10px; }
+  header h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 1.22;
+    margin-bottom: 16px;
+  }
+  header .lede { color: var(--stone); font-size: 12.5px; max-width: 250px; }
+
+  header .col-2 {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    align-items: center;
+    padding: 0 26px;
+    border-left: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+  }
+  .logo-lockup svg { width: 100%; max-width: 290px; display: block; }
+  .wordmark-block { text-align: center; }
+  .wordmark-block .word {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 42px;
+    letter-spacing: .42em;
+    margin-right: -.42em;
+    color: var(--ivory);
+  }
+  .wordmark-block .tag {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: .04em;
+    margin-top: 8px;
+  }
+  .wordmark-block .value {
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: .34em;
+    margin-right: -.34em;
+    margin-top: 14px;
+    white-space: nowrap;
+  }
+  .wordmark-block .value .dot { color: var(--orange); }
+
+  header .col-3 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; align-content: start; padding-top: 4px; }
+  .essence { text-align: center; padding: 0 4px; }
+  .essence .glyph { height: 58px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+  .essence .glyph svg { width: 42px; height: 42px; }
+  .essence .name { font-size: 11px; font-weight: 700; letter-spacing: .14em; margin-bottom: 8px; }
+  .essence p { color: var(--stone); font-size: 11px; line-height: 1.5; }
+
+  /* ============ PANELS ============ */
+  .grid-3  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .grid-2  { display: grid; grid-template-columns: 0.62fr 1fr 1.28fr; gap: 14px; margin-top: 14px; }
+  .grid-2b { display: grid; grid-template-columns: 1fr 1.2fr; gap: 14px; margin-top: 14px; }
+
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px 24px;
+    min-height: 250px;
+  }
+  .panel h2 {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .14em;
+    color: var(--ivory);
+    margin-bottom: 18px;
+  }
+  .panel h2 .num { color: var(--stone); margin-right: 8px; }
+  .panel .sub {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 14px;
+  }
+  .footnote { color: var(--stone-2); font-size: 10.5px; margin-top: 14px; }
+
+  /* ---- 01 logo system ---- */
+  .logo-cells { display: grid; grid-template-columns: 1.3fr 1fr 1.05fr .95fr; }
+  .logo-cells > div { padding: 0 16px; text-align: center; }
+  .logo-cells > div:first-child { padding-left: 0; }
+  .logo-cells > div:last-child { padding-right: 0; }
+  .logo-cells > div + div { border-left: 1px solid var(--line); }
+  .cell-label { font-size: 10.5px; font-weight: 600; letter-spacing: .1em; color: var(--ivory); margin-bottom: 16px; }
+  .logo-cells svg { display: block; margin: 0 auto; }
+  .primary-cell .word {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 19px; letter-spacing: .42em; margin-right: -.42em; margin-top: 10px;
+  }
+  .primary-cell .mini, .type-cell .mini { color: var(--forest); font-family: var(--font-display); font-size: 10.5px; margin-top: 6px; line-height: 1.5; }
+  .type-cell .word {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 20px; letter-spacing: .42em; margin-right: -.42em;
+  }
+  .appicon {
+    width: 84px; height: 84px; margin: 0 auto;
+    background: linear-gradient(150deg, #201B14 0%, #131311 60%);
+    border: 1px solid var(--line-2);
+    border-radius: 20px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .appicon svg { width: 60px; height: 60px; }
+
+  /* ---- 02 clear space / min size ---- */
+  .cs-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 22px; }
+  .clearspace { position: relative; }
+  .clearspace .frame {
+    border: 1px solid var(--line-2);
+    border-radius: 8px;
+    padding: 12px;
+    background:
+      linear-gradient(to right, rgba(241,237,227,.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(241,237,227,.045) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+  .clearspace .frame svg { display: block; width: 100%; height: auto; }
+  .corner { position: absolute; color: var(--stone); font-family: var(--font-display); font-weight: 600; font-size: 12px; }
+  .corner.tl { top: -5px; left: 0; }
+  .corner.tr { top: -5px; right: 0; }
+  .corner.bl { bottom: -7px; left: 0; }
+  .corner.br { bottom: -7px; right: 0; }
+  .minsize { display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; }
+  .minsize figure { text-align: center; }
+  .minsize figcaption { color: var(--stone); font-size: 10px; margin-top: 12px; line-height: 1.45; }
+  .minsize .dash { display: block; width: 44px; border-top: 1px solid var(--stone-2); margin: 6px auto 4px; position: relative; }
+  .minsize .dash::before, .minsize .dash::after {
+    content: ''; position: absolute; top: -3px; width: 1px; height: 7px; background: var(--stone-2);
+  }
+  .minsize .dash::before { left: 0; }
+  .minsize .dash::after { right: 0; }
+
+  /* ---- 03 palette ---- */
+  .palette-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 18px; }
+  .swatch .chip { height: 64px; border-radius: 8px; border: 1px solid rgba(241,237,227,.08); }
+  .swatch .name { font-size: 10.5px; font-weight: 600; margin: 8px 0 2px; }
+  .swatch .hex { font-size: 10.5px; color: var(--stone); }
+  .neutral-row { display: flex; align-items: center; gap: 8px; }
+  .neutral-row .chip { flex: 1; height: 26px; border-radius: 6px; border: 1px solid rgba(241,237,227,.08); }
+  .neutral-row .arrow { color: var(--stone-2); font-size: 10px; }
+  .neutral-hexes { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 6px; }
+  .neutral-hexes span { font-size: 10.5px; color: var(--stone); text-align: center; }
+
+  /* ---- 04 typography ---- */
+  .type-block { padding: 4px 0 14px; }
+  .type-block + .type-block { border-top: 1px solid var(--line); }
+  .type-block .role { font-size: 10.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--stone); margin-bottom: 8px; }
+  .type-block .face { font-family: var(--font-display); font-size: 32px; font-weight: 600; margin-bottom: 8px; }
+  .type-block .sample { color: var(--stone); font-size: 12.5px; letter-spacing: .04em; margin-bottom: 4px; }
+  .type-block .sample2 { color: var(--stone-2); font-size: 11.5px; letter-spacing: .02em; }
+  .weights { display: flex; flex-direction: column; gap: 2px; align-self: center; }
+  .weights span { font-size: 13px; line-height: 1.55; }
+  .w300 { font-weight: 300; color: var(--stone); }
+  .w400 { font-weight: 400; }
+  .w500 { font-weight: 500; }
+  .w600 { font-weight: 600; }
+  .w700 { font-weight: 700; }
+  .type-grid { display: grid; grid-template-columns: 1fr 96px; gap: 0 20px; align-items: center; }
+
+  /* ---- 05 product family ---- */
+  .products { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+  .product { text-align: center; }
+  .product .tile {
+    width: 100%; aspect-ratio: 1/1; max-width: 92px; margin: 0 auto 12px;
+    border: 1px solid var(--line-2);
+    border-radius: 18px;
+    background: linear-gradient(155deg, #191713 0%, #121210 65%);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .product .tile svg { width: 72%; height: 72%; }
+  .product .pname { font-size: 11px; font-weight: 700; letter-spacing: .04em; }
+  .product .pname .dim { color: var(--stone); font-weight: 600; }
+  .product .pdesc { color: var(--stone); font-size: 10.5px; margin-top: 3px; line-height: 1.45; }
+  .product-link { display: flex; flex-direction: column; align-items: center; margin-top: 18px; }
+  .product-link .dots { display: flex; justify-content: space-between; width: 78%; }
+  .product-link .dots span { width: 4px; height: 4px; border-radius: 50%; background: var(--forest); }
+  .product-link .line { width: 78%; border-top: 1px dashed var(--forest); opacity: .5; margin-top: -2px; }
+  .product-link .closing { color: var(--forest); font-family: var(--font-display); font-size: 13px; margin-top: 12px; }
+
+  /* ---- 06 applications ---- */
+  .apps { display: grid; grid-template-columns: 1.15fr 1.3fr .95fr .8fr; gap: 18px; align-items: end; }
+  .apps figure { text-align: center; }
+  .apps figcaption { color: var(--stone); font-size: 11px; margin-top: 12px; }
+  .bizcard {
+    width: 100%; max-width: 200px; margin: 0 auto;
+    aspect-ratio: 1.58/1;
+    background: linear-gradient(150deg, #1C1A16 0%, #111110 70%);
+    border: 1px solid var(--line-2);
+    border-radius: 8px;
+    padding: 12px 14px;
+    display: grid; grid-template-columns: 42px 1fr; gap: 12px; align-items: center;
+  }
+  .bizcard .mark { width: 42px; height: 42px; background: var(--obsidian); border-radius: 9px; display: flex; align-items: center; justify-content: center; }
+  .bizcard .mark svg { width: 36px; height: 36px; }
+  .bizcard .nm { font-family: var(--font-display); font-weight: 600; font-size: 11.5px; letter-spacing: .06em; }
+  .bizcard .rl { color: var(--stone); font-size: 9px; margin-top: 1px; }
+  .bizcard .ln { color: var(--stone); font-size: 9px; margin-top: 5px; display: flex; align-items: center; gap: 4px; }
+  .bizcard .ln i { color: var(--orange); font-style: normal; }
+  .laptop { width: 100%; max-width: 290px; margin: 0 auto; display: block; }
+  .phone {
+    width: 122px; margin: 0 auto;
+    background: #0C0C0B;
+    border: 1px solid var(--line-2);
+    border-radius: 20px;
+    padding: 8px;
+  }
+  .phone .screen {
+    border-radius: 13px;
+    background: radial-gradient(80% 55% at 50% 38%, #1E1510 0%, #0E0D0C 70%);
+    aspect-ratio: 9/19;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  }
+  .phone .screen svg { width: 60%; }
+  .phone .screen .w { font-family: var(--font-display); font-size: 12px; letter-spacing: .38em; margin-right: -.38em; }
+  .phone .screen .t { color: var(--stone); font-size: 6.5px; text-align: center; line-height: 1.5; letter-spacing: .08em; }
+  .appicon-lg {
+    width: 94px; height: 94px; margin: 0 auto;
+    background: linear-gradient(150deg, #201B14 0%, #131311 60%);
+    border: 1px solid var(--line-2);
+    border-radius: 24px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .appicon-lg svg { width: 68px; height: 68px; }
+
+  /* ---- 07 roadmap ---- */
+  .roadmap { display: grid; grid-template-columns: repeat(5, 1fr); gap: 22px; }
+  .step { position: relative; }
+  .step .icon {
+    width: 46px; height: 46px; margin-bottom: 14px;
+    border-radius: 50%;
+    border: 1.5px solid var(--ember);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .step:nth-child(2) .icon, .step:nth-child(5) .icon { border-color: var(--forest); }
+  .step:nth-child(3) .icon { border-color: var(--orange); }
+  .step .icon svg { width: 20px; height: 20px; }
+  .step h3 { font-size: 11px; font-weight: 700; letter-spacing: .06em; margin-bottom: 6px; }
+  .step h3 .no { color: var(--stone); font-weight: 600; }
+  .step p { color: var(--stone); font-size: 10.5px; line-height: 1.5; }
+  .step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 23px; left: 58px; right: -14px;
+    border-top: 1px dashed rgba(241,237,227,.18);
+  }
+
+  /* ---- 08 promise ---- */
+  .promise-panel { display: grid; grid-template-columns: 1.1fr 1fr; gap: 30px; position: relative; overflow: hidden; }
+  .promise-copy h2 { margin-bottom: 14px; }
+  .promise-copy .statement {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 1.5;
+    max-width: 560px;
+  }
+  .values { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 22px; }
+  .value { display: grid; grid-template-columns: 24px 1fr; gap: 8px; align-items: start; }
+  .value svg { width: 20px; height: 20px; margin-top: 1px; }
+  .value .vn { font-size: 10.5px; font-weight: 700; letter-spacing: .08em; }
+  .value p { color: var(--stone); font-size: 9.5px; margin-top: 3px; line-height: 1.45; }
+  .promise-art { position: relative; min-height: 240px; }
+  .promise-art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  /* The sheet is a fixed 1560px board; it scales proportionally like a poster. */
+  @media print { body { padding: 0; zoom: 1 !important; } }
+</style>
+</head>
+<body>
+
+<!-- ===== Reusable brand artwork (gradients + mark symbols) ===== -->
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="gR" gradientUnits="userSpaceOnUse" x1="350" y1="620" x2="560" y2="180">
+      <stop offset="0%" stop-color="#C83E36"/>
+      <stop offset="100%" stop-color="#D66A2C"/>
+    </linearGradient>
+    <linearGradient id="gO" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3F6B4F" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="#3F6B4F" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#3F6B4F" stop-opacity="0.15"/>
+    </linearGradient>
+    <radialGradient id="gS" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F1EDE3" stop-opacity="0.35"/>
+      <stop offset="40%" stop-color="#F1EDE3" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#F1EDE3" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Full master mark — identical geometry to websites/web-portal-angular/public/rasha-favicon.svg -->
+    <symbol id="rasha-mark" viewBox="0 0 800 800">
+      <circle cx="590" cy="210" r="80" fill="url(#gS)"/>
+      <!-- Green ecosystem geometry — must remain complete (BRANDING.md §13) -->
+      <path d="M568.4 354.6C577.4 320.8 568.7 283.6 542.6 257.3C516.4 231 479.1 222.3 444.6 231.3C419.7 206.8 382.7 195.6 347.7 205.3C312.6 215 286.4 243 277.3 276.7C243 285.7 214.5 311.5 204.8 347.8C195.2 384 206.5 421.1 231.3 444.7C222.3 479.2 231 516.5 257.3 542.7C283.6 568.8 320.8 577.5 354.7 568.4C379.3 593 416.3 604.2 451.3 594.5C486.4 584.8 512.6 556.8 521.7 523.1C556 514.1 584.5 488.3 594.2 452C603.8 415.8 592.5 378.7 567.7 355.1V354.6ZM526.3 273.4C544.2 291.3 551.6 315.8 548.4 339.3L464.4 290.8C460.8 288.8 456.4 288.8 452.8 290.8L354.7 348.1V310.7C354.7 308.1 356.1 305.6 358.4 304.3L433.4 261C463.3 244.3 501.8 248.7 526.3 273.4H526.3ZM399.1 348.5L444.7 374.6V427.1L399.1 453.2L353.5 427.1V374.6L399.1 348.5ZM296.3 301.8C296.8 267.8 319.7 236.8 354.4 227.5C378.8 221 403.6 226.8 422.3 241.2L338.3 289.5C334.7 291.6 332.5 295.4 332.5 299.5V415L300.5 396.3C298.2 395 296.8 392.5 296.8 389.9V301.8V301.8ZM227.5 354.4C234.1 330 251.7 311.3 273.5 302.2V399.7C273.5 403.8 275.7 407.6 279.3 409.7L378.2 467.2L346 486.2C343.7 487.5 340.9 487.5 338.6 486.2L263.6 442.9C234.5 425.4 219.2 390.1 227.5 354.4ZM273.4 523.1C255.5 505.2 248.1 480.7 251.3 457.2L335.3 505.7C338.9 507.7 343.3 507.7 346.9 505.7L444.7 448.4V486C447 487.3 448.4 489.8 448.4 492.4L373.4 535.7C343.5 552.4 305 548 279.5 523.3H273.4ZM503.8 500.5C503.3 534.5 480.4 565.5 445.7 574.8C421.3 581.3 396.5 575.5 377.8 561.1L461.8 512.8C465.4 510.7 467.6 506.9 467.6 502.8V389.2L499.6 407.9C501.9 409.2 503.3 411.7 503.3 414.3V500.5V500.5ZM574.8 445.7C568.2 470.1 550.6 488.8 528.8 497.9V400.4C528.8 396.3 526.6 392.5 523 390.4L424.1 332.9L456.3 313.9C458.6 312.6 461.4 312.6 463.7 313.9L538.7 357.2C567.8 374.7 583.1 410 574.8 445.7Z" fill="#3F6B4F" opacity="0.7"/>
+      <ellipse cx="400" cy="400" rx="290" ry="195" transform="rotate(-12 400 400)" fill="none" stroke="url(#gO)" stroke-width="5" stroke-linecap="round" opacity="0.85"/>
+      <circle cx="660" cy="340" r="11" fill="#D66A2C" opacity="0.9"/>
+      <path d="M 340,610 L 340,190" fill="none" stroke="url(#gR)" stroke-width="58" stroke-linecap="round"/>
+      <path d="M 340,190 C 430,175 560,225 560,350 C 560,440 490,490 400,490" fill="none" stroke="url(#gR)" stroke-width="58" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M 400,490 L 590,610" fill="none" stroke="url(#gR)" stroke-width="58" stroke-linecap="round"/>
+      <path d="M 590,170 L 598,200 L 628,210 L 598,220 L 590,250 L 582,220 L 552,210 L 582,200 Z" fill="#F1EDE3"/>
+    </symbol>
+
+    <!-- Simplified small-size mark (16px digital) -->
+    <symbol id="rasha-mark-16" viewBox="0 0 800 800">
+      <ellipse cx="400" cy="400" rx="290" ry="195" transform="rotate(-12 400 400)" fill="none" stroke="#3F6B4F" stroke-width="22" opacity="0.75"/>
+      <path d="M 340,610 L 340,190" fill="none" stroke="#C83E36" stroke-width="66" stroke-linecap="round"/>
+      <path d="M 340,190 C 430,175 560,225 560,350 C 560,440 490,490 400,490" fill="none" stroke="#C83E36" stroke-width="66" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M 400,490 L 590,610" fill="none" stroke="#C83E36" stroke-width="66" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- Flat print mark (12mm) -->
+    <symbol id="rasha-mark-print" viewBox="0 0 800 800">
+      <ellipse cx="400" cy="400" rx="290" ry="195" transform="rotate(-12 400 400)" fill="none" stroke="#D66A2C" stroke-width="18" opacity="0.7"/>
+      <path d="M 340,610 L 340,190" fill="none" stroke="#D66A2C" stroke-width="62" stroke-linecap="round"/>
+      <path d="M 340,190 C 430,175 560,225 560,350 C 560,440 490,490 400,490" fill="none" stroke="#D66A2C" stroke-width="62" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M 400,490 L 590,610" fill="none" stroke="#D66A2C" stroke-width="62" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="sheet">
+
+  <!-- ================= HEADER ================= -->
+  <header>
+    <div class="col-1">
+      <div class="kicker what-next">What's next?</div>
+      <h1>BUILDING THE<br><span class="ember">RASHA</span> UNIVERSE</h1>
+      <p class="lede">We've defined the core identity. Now let's build a complete brand system that scales across products, experiences, and the future.</p>
+    </div>
+
+    <div class="col-2">
+      <div class="logo-lockup">
+        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="RASHA master mark">
+          <use href="#rasha-mark"/>
+        </svg>
+      </div>
+      <div class="wordmark-block">
+        <div class="word">RASHA</div>
+        <div class="tag green">Ruang Impian dalam Satu Genggaman</div>
+        <div class="value">CONNECT <span class="dot">•</span> BUILD <span class="dot">•</span> EMPOWER</div>
+      </div>
+    </div>
+
+    <div class="col-3">
+      <div class="essence">
+        <div class="glyph">
+          <svg viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="24" r="13" stroke="#C83E36" stroke-width="2.4"/>
+            <circle cx="24" cy="24" r="5.5" fill="#C83E36"/>
+            <path d="M24 3v8M24 37v8M3 24h8M37 24h8" stroke="#C83E36" stroke-width="2.4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="name ember">CORE</div>
+        <p>R is our identity. We are the center of everything.</p>
+      </div>
+      <div class="essence">
+        <div class="glyph">
+          <svg viewBox="0 0 48 48" fill="none">
+            <ellipse cx="24" cy="24" rx="19" ry="10.5" transform="rotate(-18 24 24)" stroke="#3F6B4F" stroke-width="2.4"/>
+            <circle cx="39.5" cy="17.5" r="3.4" fill="#3F6B4F"/>
+          </svg>
+        </div>
+        <div class="name green">ECOSYSTEM</div>
+        <p>The orbit represents connection, movement, and growth.</p>
+      </div>
+      <div class="essence">
+        <div class="glyph">
+          <svg viewBox="0 0 48 48" fill="none">
+            <circle cx="23" cy="23" r="11" fill="#D66A2C"/>
+            <ellipse cx="29" cy="26" rx="17" ry="6.5" transform="rotate(-16 29 26)" stroke="#D66A2C" stroke-width="2.4"/>
+          </svg>
+        </div>
+        <div class="name orange">SOLUTIONS</div>
+        <p>Our products are planets that create real impact.</p>
+      </div>
+      <div class="essence">
+        <div class="glyph">
+          <svg viewBox="0 0 48 48" fill="none">
+            <path d="M24 6 L26.6 21.4 L42 24 L26.6 26.6 L24 42 L21.4 26.6 L6 24 L21.4 21.4 Z" fill="#F1EDE3"/>
+          </svg>
+        </div>
+        <div class="name" style="color:var(--ivory)">ASPIRATION</div>
+        <p>We aim higher to inspire and guide the future.</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= ROW 1 ================= -->
+  <div class="grid-3">
+
+    <!-- 01 LOGO SYSTEM -->
+    <section class="panel">
+      <h2><span class="num">01.</span> LOGO SYSTEM</h2>
+      <div class="logo-cells">
+        <div class="primary-cell">
+          <div class="cell-label">PRIMARY LOGO</div>
+          <svg viewBox="0 0 800 800" width="118" height="118" xmlns="http://www.w3.org/2000/svg" aria-label="Primary logo">
+            <use href="#rasha-mark"/>
+          </svg>
+          <div class="word">RASHA</div>
+          <div class="mini">Ruang Impian dalam<br>Satu Genggaman</div>
+        </div>
+        <div>
+          <div class="cell-label">LOGO MARK</div>
+          <svg viewBox="0 0 800 800" width="104" height="104" xmlns="http://www.w3.org/2000/svg" aria-label="Logo mark">
+            <use href="#rasha-mark"/>
+          </svg>
+        </div>
+        <div class="type-cell">
+          <div class="cell-label">LOGO TYPE</div>
+          <div class="word" style="margin-top:38px;">RASHA</div>
+          <div class="mini">Ruang Impian dalam<br>Satu Genggaman</div>
+        </div>
+        <div>
+          <div class="cell-label">FAVICON / APP ICON</div>
+          <div class="appicon">
+            <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" aria-label="App icon">
+              <use href="#rasha-mark"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 CLEAR SPACE & MINIMUM SIZE -->
+    <section class="panel">
+      <h2><span class="num">02.</span> CLEAR SPACE &amp; MINIMUM SIZE</h2>
+      <div class="cs-grid">
+        <div class="clearspace">
+          <div class="corner tl">R</div><div class="corner tr">R</div>
+          <div class="corner bl">R</div><div class="corner br">R</div>
+          <div class="frame">
+            <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" aria-label="Clear space construction">
+              <rect x="185" y="185" width="430" height="430" fill="none" stroke="#6B675E" stroke-width="1.5" stroke-dasharray="7 7"/>
+              <use href="#rasha-mark"/>
+            </svg>
+          </div>
+        </div>
+        <div class="minsize">
+          <figure>
+            <svg viewBox="0 0 800 800" width="56" height="56" xmlns="http://www.w3.org/2000/svg">
+              <use href="#rasha-mark"/>
+            </svg>
+            <figcaption><span class="dash"></span>~32px<br>Digital</figcaption>
+          </figure>
+          <figure>
+            <svg viewBox="0 0 800 800" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
+              <use href="#rasha-mark-16"/>
+            </svg>
+            <figcaption><span class="dash"></span>16px<br>Digital (Small)</figcaption>
+          </figure>
+          <figure>
+            <svg viewBox="0 0 800 800" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
+              <use href="#rasha-mark-print"/>
+            </svg>
+            <figcaption><span class="dash"></span>12mm<br>Print</figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="footnote">Clear space = height of the "R".</div>
+    </section>
+
+    <!-- 03 COLOR PALETTE -->
+    <section class="panel">
+      <h2><span class="num">03.</span> COLOR PALETTE</h2>
+      <div class="sub">Primary Colors</div>
+      <div class="palette-row">
+        <div class="swatch">
+          <div class="chip" style="background:#C83E36"></div>
+          <div class="name">Ember Red</div>
+          <div class="hex">#C83E36</div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:#D66A2C"></div>
+          <div class="name">Burnt Orange</div>
+          <div class="hex">#D66A2C</div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:#3F6B4F"></div>
+          <div class="name">Forest</div>
+          <div class="hex">#3F6B4F</div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:#F1EDE3"></div>
+          <div class="name">Warm Ivory</div>
+          <div class="hex">#F1EDE3</div>
+        </div>
+      </div>
+      <div class="sub">Neutral Colors</div>
+      <div class="neutral-row">
+        <div class="chip" style="background:#0D0F10"></div>
+        <span class="arrow">→</span>
+        <div class="chip" style="background:#1B1E20"></div>
+        <span class="arrow">→</span>
+        <div class="chip" style="background:#33373A"></div>
+        <span class="arrow">→</span>
+        <div class="chip" style="background:#6B6F72"></div>
+        <span class="arrow">→</span>
+        <div class="chip" style="background:#A3A6A9"></div>
+      </div>
+      <div class="neutral-hexes">
+        <span>#0D0F10</span><span>#1B1E20</span><span>#33373A</span><span>#6B6F72</span><span>#A3A6A9</span>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= ROW 2 ================= -->
+  <div class="grid-2">
+
+    <!-- 04 TYPOGRAPHY -->
+    <section class="panel">
+      <h2><span class="num">04.</span> TYPOGRAPHY</h2>
+      <div class="type-grid">
+        <div class="type-block">
+          <div class="role">Primary Typeface</div>
+          <div class="face">Sora</div>
+          <div class="sample" style="font-family:var(--font-display)">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+          <div class="sample2" style="font-family:var(--font-display)">abcdefghijklmnopqrstuvwxyz</div>
+          <div class="sample2" style="font-family:var(--font-display)">0123456789</div>
+        </div>
+        <div class="weights" style="font-family:var(--font-display)">
+          <span class="w300">Light</span>
+          <span class="w400">Regular</span>
+          <span class="w500">Medium</span>
+          <span class="w600">SemiBold</span>
+          <span class="w700">Bold</span>
+        </div>
+
+        <div class="type-block">
+          <div class="role">Secondary Typeface (Supporting)</div>
+          <div class="face" style="font-family:var(--font-body);font-weight:600;">Inter</div>
+          <div class="sample">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+          <div class="sample2">abcdefghijklmnopqrstuvwxyz</div>
+          <div class="sample2">0123456789</div>
+        </div>
+        <div class="weights" style="font-family:var(--font-body)">
+          <span class="w300">Light</span>
+          <span class="w400">Regular</span>
+          <span class="w500">Medium</span>
+          <span class="w600">SemiBold</span>
+          <span class="w700">Bold</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 PRODUCT FAMILY -->
+    <section class="panel">
+      <h2><span class="num">05.</span> BRAND IN ACTION — PRODUCT FAMILY</h2>
+      <div class="products">
+        <div class="product">
+          <div class="tile"><svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg"><use href="#rasha-mark"/></svg></div>
+          <div class="pname"><span class="dim">RASHA</span> Portal</div>
+          <div class="pdesc">Information<br>&amp; Dashboard</div>
+        </div>
+        <div class="product">
+          <div class="tile"><svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg"><use href="#rasha-mark"/></svg></div>
+          <div class="pname"><span class="dim">RASHA</span> Form</div>
+          <div class="pdesc">Form Builder<br>&amp; Workflow</div>
+        </div>
+        <div class="product">
+          <div class="tile"><svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg"><use href="#rasha-mark"/></svg></div>
+          <div class="pname"><span class="dim">RASHA</span> ERP</div>
+          <div class="pdesc">Business<br>Management</div>
+        </div>
+        <div class="product">
+          <div class="tile"><svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg"><use href="#rasha-mark"/></svg></div>
+          <div class="pname"><span class="dim">RASHA</span> Notify</div>
+          <div class="pdesc">Communication<br>&amp; Notification</div>
+        </div>
+        <div class="product">
+          <div class="tile"><svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg"><use href="#rasha-mark"/></svg></div>
+          <div class="pname"><span class="dim">RASHA</span> Analytics</div>
+          <div class="pdesc">Data &amp;<br>Analytics</div>
+        </div>
+      </div>
+      <div class="product-link">
+        <div class="dots"><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="line"></div>
+        <div class="closing">One Ecosystem. Unlimited Possibilities.</div>
+      </div>
+    </section>
+
+    <!-- 06 APPLICATIONS -->
+    <section class="panel">
+      <h2><span class="num">06.</span> BRAND APPLICATION EXAMPLES</h2>
+      <div class="apps">
+        <figure>
+          <div class="bizcard">
+            <div class="mark">
+              <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg"><use href="#rasha-mark"/></svg>
+            </div>
+            <div>
+              <div class="nm">IBNU ROHAN</div>
+              <div class="rl">Founder / Engineer</div>
+              <div class="ln"><i>✉</i> hello@rasha.id</div>
+              <div class="ln"><i>◎</i> www.rasha.id</div>
+            </div>
+          </div>
+          <figcaption>Business Card</figcaption>
+        </figure>
+        <figure>
+          <svg class="laptop" viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" aria-label="Laptop application">
+            <rect x="35" y="6" width="250" height="162" rx="10" fill="#0C0C0B" stroke="#33322B"/>
+            <rect x="47" y="18" width="226" height="138" rx="4" fill="#121110"/>
+            <g>
+              <ellipse cx="160" cy="86" rx="64" ry="44" transform="rotate(-12 160 86)" fill="none" stroke="#3F6B4F" stroke-width="1.6" opacity="0.8"/>
+              <circle cx="217" cy="76" r="3" fill="#D66A2C"/>
+              <path d="M 149,124 L 149,50" fill="none" stroke="url(#gR)" stroke-width="12" stroke-linecap="round"/>
+              <path d="M 149,50 C 170,47 198,58 198,84 C 198,103 182,113 161,113" fill="none" stroke="url(#gR)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M 161,113 L 203,140" fill="none" stroke="url(#gR)" stroke-width="12" stroke-linecap="round"/>
+              <path d="M 203,38 L 205,45 L 212,48 L 205,51 L 203,58 L 201,51 L 194,48 L 201,45 Z" fill="#F1EDE3"/>
+            </g>
+            <path d="M 16,168 L 304,168 L 292,184 L 28,184 Z" fill="#232320" stroke="#33322B"/>
+          </svg>
+          <figcaption>Laptop</figcaption>
+        </figure>
+        <figure>
+          <div class="phone">
+            <div class="screen">
+              <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg"><use href="#rasha-mark"/></svg>
+              <div class="w">RASHA</div>
+              <div class="t">Ruang Impian dalam<br>Satu Genggaman</div>
+            </div>
+          </div>
+          <figcaption>Mobile Splash</figcaption>
+        </figure>
+        <figure>
+          <div class="appicon-lg">
+            <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg"><use href="#rasha-mark"/></svg>
+          </div>
+          <figcaption>App Icon</figcaption>
+        </figure>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= ROW 3 ================= -->
+  <div class="grid-2b">
+
+    <!-- 07 ROADMAP -->
+    <section class="panel">
+      <h2><span class="num">07.</span> NEXT STEPS – BRAND BUILD ROADMAP</h2>
+      <div class="roadmap">
+        <div class="step">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#C83E36" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 L21 21" stroke-linecap="round"/></svg>
+          </div>
+          <h3><span class="no">1.</span> RESEARCH &amp; STRATEGY</h3>
+          <p>Deep dive into audience, market, and positioning.</p>
+        </div>
+        <div class="step">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#C83E36" stroke-width="1.8"><path d="M4 20l1-4 11-11 3 3-11 11-4 1z" stroke-linejoin="round"/><path d="M12.5 8.5l3 3"/></svg>
+          </div>
+          <h3><span class="no">2.</span> BRAND IDENTITY SYSTEM</h3>
+          <p>Finalize logo suite, colors, typography, and guidelines.</p>
+        </div>
+        <div class="step">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#D66A2C" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9.5h16M9.5 4v16"/></svg>
+          </div>
+          <h3><span class="no">3.</span> VISUAL LANGUAGE</h3>
+          <p>Create patterns, icons, illustrations, and imagery.</p>
+        </div>
+        <div class="step">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#3F6B4F" stroke-width="1.8"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M9 21h6"/></svg>
+          </div>
+          <h3><span class="no">4.</span> DIGITAL EXPERIENCE</h3>
+          <p>Apply brand to website, apps, and digital platforms.</p>
+        </div>
+        <div class="step">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#C83E36" stroke-width="1.8"><path d="M12 3c3 2 4.5 5.5 4.5 9l-2.5 2.5h-4L7.5 12C7.5 8.5 9 5 12 3z" stroke-linejoin="round"/><circle cx="12" cy="10" r="1.6"/><path d="M10 17.5c-.5 1.5-2 2-3.5 2 .3-1.5 1-2.6 2.2-3.2" stroke-linecap="round"/></svg>
+          </div>
+          <h3><span class="no">5.</span> LAUNCH &amp; GROWTH</h3>
+          <p>Consistent rollout and continuous evolution.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 BRAND PROMISE -->
+    <section class="panel promise-panel">
+      <div class="promise-copy">
+        <h2><span class="num">08.</span> BRAND PROMISE</h2>
+        <div class="statement">
+          We don't just build software.<br>
+          We build a <span class="ember">universe of solutions</span><br>
+          that empowers dreams.
+        </div>
+        <div class="values">
+          <div class="value">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#C83E36" stroke-width="1.8"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z" stroke-linejoin="round"/></svg>
+            <div>
+              <div class="vn ember">USER FIRST</div>
+              <p>Everything we build starts with you.</p>
+            </div>
+          </div>
+          <div class="value">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#3F6B4F" stroke-width="1.8"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div>
+              <div class="vn green">TRUST &amp; SECURITY</div>
+              <p>Your data, your trust, our responsibility.</p>
+            </div>
+          </div>
+          <div class="value">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#D66A2C" stroke-width="1.8"><path d="M4 20V13M10 20V9M16 20V5" stroke-linecap="round"/><path d="M3 20h18" stroke-linecap="round"/></svg>
+            <div>
+              <div class="vn orange">INNOVATION</div>
+              <p>We innovate to simplify and create impact.</p>
+            </div>
+          </div>
+          <div class="value">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#3F6B4F" stroke-width="1.8"><circle cx="9" cy="8" r="3"/><circle cx="16.5" cy="9.5" r="2.5"/><path d="M3.5 19c.7-3 2.9-4.5 5.5-4.5s4.8 1.5 5.5 4.5" stroke-linecap="round"/><path d="M15 14.6c2.2.2 3.9 1.6 4.5 3.9" stroke-linecap="round"/></svg>
+            <div>
+              <div class="vn green">TOGETHER</div>
+              <p>Stronger together, growing together.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="promise-art">
+        <svg viewBox="0 0 600 400" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <radialGradient id="planetG" cx="38%" cy="38%" r="75%">
+              <stop offset="0%" stop-color="#2A2A26"/>
+              <stop offset="55%" stop-color="#161614"/>
+              <stop offset="100%" stop-color="#0C0C0B"/>
+            </radialGradient>
+            <radialGradient id="sunG" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#D66A2C" stop-opacity="0.85"/>
+              <stop offset="35%" stop-color="#C83E36" stop-opacity="0.35"/>
+              <stop offset="100%" stop-color="#C83E36" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="rimG" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#E4854E" stop-opacity="0"/>
+              <stop offset="45%" stop-color="#E4854E" stop-opacity="0.55"/>
+              <stop offset="100%" stop-color="#F1EDE3" stop-opacity="0.9"/>
+            </linearGradient>
+          </defs>
+          <circle cx="470" cy="70" r="70" fill="url(#sunG)"/>
+          <circle cx="330" cy="440" r="280" fill="url(#planetG)"/>
+          <path d="M 55,350 A 280,280 0 0 1 605,230" fill="none" stroke="url(#rimG)" stroke-width="2.5" opacity="0.9"/>
+          <ellipse cx="330" cy="440" rx="340" ry="150" transform="rotate(-14 330 440)" fill="none" stroke="#3F6B4F" stroke-width="1.6" opacity="0.55"/>
+          <circle cx="565" cy="300" r="4" fill="#D66A2C"/>
+          <circle cx="150" cy="110" r="2" fill="#F1EDE3" opacity="0.8"/>
+          <circle cx="90" cy="55" r="1.5" fill="#F1EDE3" opacity="0.6"/>
+          <circle cx="245" cy="38" r="1.5" fill="#F1EDE3" opacity="0.5"/>
+          <path d="M 505,115 L 508,126 L 519,129 L 508,132 L 505,143 L 502,132 L 491,129 L 502,126 Z" fill="#F1EDE3" opacity="0.9"/>
+        </svg>
+      </div>
+    </section>
+  </div>
+
+</div>
+<script>
+  // Scale the fixed-width board to fit the viewport (poster behavior).
+  (function () {
+    var DESIGN = 1616; // 1560px sheet + 2 × 28px body padding
+    function fit() {
+      var w = document.documentElement.clientWidth;
+      document.body.style.zoom = Math.min(1, w / DESIGN);
+    }
+    fit();
+    window.addEventListener('resize', fit);
+  })();
+</script>
+</body>
+</html>
